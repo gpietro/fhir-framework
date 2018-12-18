@@ -1,6 +1,9 @@
 // Initializes the `<%= name %>` service on path `/<%= path %>`
-const createService = require('<%= serviceModule %>');<% if(modelName) { %>
-const createModel = require('<%= relativeRoot %>models/<%= modelName %>');<% } %>
+const createService = require('<%= serviceModule %>');
+<% if(modelName) { %>
+  const createModel = require('<%= relativeRoot %>models/<%= modelName %>');
+<% } %>
+
 const hooks = require('./<%= kebabName %>.hooks');
 
 module.exports = function (app) {
@@ -11,8 +14,6 @@ module.exports = function (app) {
     Model,<% } %>
     paginate
   };
-
-  console.log('custom generator')
 
   // Initialize our service with any options it requires
   app.use('/<%= path %>', createService(options));
