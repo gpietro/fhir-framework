@@ -1,36 +1,9 @@
 {
-  "name": "generator-feathers",
-  "description": "A Yeoman generator for a Feathers application",
-  "version": "2.8.1",
-  "homepage": "https://github.com/feathersjs/generator-feathers",
+  "name": "generator-dragon",
+  "description": "A Yeoman generator for a Dragon application",
+  "version": "1.0.0",
   "main": "generators/app/index.js",
   "license": "MIT",
-  "keywords": [
-    "feathers",
-    "feathers-plugin",
-    "feathers-app-generator",
-    "yeoman-generator",
-    "yeoman"
-  ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/feathersjs/generator-feathers/blob/master/LICENSE"
-    }
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/feathersjs/generator-feathers.git"
-  },
-  "author": {
-    "name": "Feathers contributors",
-    "email": "hello@feathersjs.com",
-    "url": "https://feathersjs.com"
-  },
-  "contributors": [],
-  "bugs": {
-    "url": "https://github.com/feathersjs/generator-feathers/issues"
-  },
   "engines": {
     "node": ">= 6.0.0"
   },

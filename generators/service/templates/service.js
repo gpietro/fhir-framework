@@ -12,6 +12,8 @@ module.exports = function (app) {
     paginate
   };
 
+  console.log('custom generator')
+
   // Initialize our service with any options it requires
   app.use('/<%= path %>', createService(options));
 
