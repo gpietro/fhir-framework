@@ -1,5 +1,5 @@
 {
-  "name": "generator-dragon",
+  "name": "dragon-generator",
   "description": "A Yeoman generator for a Dragon application",
   "version": "1.0.0",
   "main": "generators/app/index.js",
