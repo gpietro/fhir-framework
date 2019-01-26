@@ -1,3 +1,6 @@
+const hook = require('../../lib/schema-validator');
+const validate = hook('../../../fhir/schema/<%= resourceName %>.schema.json');
+
 <% if (requiresAuth) { %>const { authenticate } = require('@feathersjs/authentication').hooks;<% } %>
 
 module.exports = {
@@ -5,9 +8,9 @@ module.exports = {
     all: [<% if (requiresAuth) { %> authenticate('jwt') <% } %>],
     find: [],
     get: [],
-    create: [],
-    update: [],
-    patch: [],
+    create: [ validate ],
+    update: [ validate ],
+    patch: [ validate ],
     remove: []
   },
 

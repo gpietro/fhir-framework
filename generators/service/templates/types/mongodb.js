@@ -1,16 +1,16 @@
 // Initializes the `<%= name %>` service on path `/<%= path %>`
 const createService = require("feathers-mongodb");
 const hooks = require("./<%= kebabName %>.hooks");
+const initSchema = require('../../lib/init-schema-docs');
 
 module.exports = function(app) {
   const paginate = app.get("paginate");
   const mongoClient = app.get("mongoClient");
   const options = { paginate };
 
-  // Initialize our service with any options it requires
-  app.use("/<%= path %>", createService(options));
-
-  console.log("custom generator yeah");
+  const <%= path %> = createService(options)
+  <%= path %>.docs = initSchema('<%= resourceName %>')
+  app.use('/<%= path %>', <%= path %>);
   // Get our initialized service so that we can register hooks and filters
   const service = app.service("<%= path %>");
 

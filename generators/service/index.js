@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const j = require("@feathersjs/tools").transform;
 const validate = require("validate-npm-package-name");
+const pluralize = require("pluralize");
 const Generator = require("../../lib/generator");
 
 const templatePath = path.join(__dirname, "templates");
@@ -165,7 +166,8 @@ module.exports = class ServiceGenerator extends Generator {
       modelName: hasModel ? `${kebabName}.model` : null,
       path: stripSlashes(this.props.path),
       relativeRoot: "../".repeat(subfolder.length + 2),
-      serviceModule
+      serviceModule,
+      resourceName: pluralize.singular(this.props.name).replace(/^\w/, c => c.toUpperCase())
     });
     const tester = this.pkg.devDependencies.jest ? "jest" : "mocha";
 

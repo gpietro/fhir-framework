@@ -1,8 +1,7 @@
-# generator-feathers
+# dragon-generator
 
-[![Build Status](https://travis-ci.org/feathersjs/generator-feathers.png?branch=master)](https://travis-ci.org/feathersjs/generator-feathers) [![Greenkeeper badge](https://badges.greenkeeper.io/feathersjs/generator-feathers.svg)](https://greenkeeper.io/)
-
-> A Yeoman generator for a Feathers application
+> Project based on feathers-generator
+> A Yeoman generator for a Dragon application
 
 ## Installation
 
@@ -29,7 +28,7 @@ mkdir my-new-app; cd my-new-app/
 Generate your app and follow the prompts.
 
 ```bash
-yo feathers
+yo dragon
 ```
 
 Start your brand new app! 💥
@@ -42,26 +41,26 @@ npm start
 
 ```bash
 # short alias for generate new application
-yo feathers
+yo dragon
 
 # set up authentication
-yo feathers:authentication
+yo dragon:authentication
 
 # set up a database connection
-yo feathers:connection
+yo dragon:connection
 
 # generate new hook
-yo feathers:hook
+yo dragon:hook
 
 # generate new middleware
-yo feathers:middleware
+yo dragon:middleware
 
 # generate new service
-yo feathers:service
+yo dragon:service
 ```
 
 ## Production
-[feathers/feathers-configuration](https://github.com/feathersjs/feathers-configuration) uses `NODE_ENV` to find a configuration file under `config/`. After updating `config/production.js` you can run 
+[dragon/dragon-configuration](https://github.com/feathersjs/feathers-configuration) uses `NODE_ENV` to find a configuration file under `config/`. After updating `config/production.js` you can run 
 
 ```bash
 NODE_ENV=production npm start
@@ -72,13 +71,13 @@ NODE_ENV=production npm start
 To contribute PRs for these generators, you will need to clone the repo
 then inside the repo's directory, run `npm link`. This sets up a global
 link to your local package for running tests (`npm test`) and generating
-new feathers apps/services/hooks/etc.
+new dragon apps/services/hooks/etc.
 
-When finished testing, optionally run `npm uninstall generator-feathers` to remove
+When finished testing, optionally run `npm uninstall dragon-generator` to remove
 the link.
 
 ## License
 
-Copyright (c) 2017
+Copyright (c) 2018
 
 Licensed under the [MIT license](LICENSE).

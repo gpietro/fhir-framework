@@ -145,7 +145,7 @@ module.exports = class AppGenerator extends Generator {
     this.fs.copy(this.templatePath("static"), this.destinationPath());
     this.fs.copy(this.templatePath("static", ".*"), this.destinationPath());
     // Fhir json schemas
-    this.fs.copy(this.templatePath("fhir"), this.destinationPath());
+    this.fs.copy(this.templatePath("fhir"), this.destinationPath('fhir'));
     // Static content for the directories.lib folder
     this.fs.copy(this.templatePath("src"), this.destinationPath(props.src));
     // This hack is necessary because NPM does not publish `.gitignore` files
@@ -210,5 +210,9 @@ module.exports = class AppGenerator extends Generator {
     this._packagerInstall(this.devDependencies, {
       saveDev: true
     });
+  }
+
+  download() {
+    console.log('downloading schemas.')
   }
 };
