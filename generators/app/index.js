@@ -27,7 +27,8 @@ module.exports = class AppGenerator extends Generator {
       "compression",
       "helmet",
       "winston@^3.0.0",
-      "cors"
+      "cors",
+      "ajv"
     ];
 
     this.devDependencies = [
