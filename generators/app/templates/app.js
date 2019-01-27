@@ -36,21 +36,22 @@ app.use('/fhir', express.static(path.join(__dirname, '..', 'fhir/schema')));
 <% if (hasProvider('rest')) { %>app.configure(express.rest());<% } %>
 <% if (hasProvider('socketio')) { %>app.configure(socketio());<% } %>
 <% if(hasProvider('primus')) { %>app.configure(primus({ transformer: 'websockets' }));<% } %>
+
+// Set up swagger documentation
+app.configure(swagger({
+  docsPath: '/docs',
+  uiIndex: path.join(__dirname, '../public/docs.html'),
+  info: {
+    title: 'FHIR API',
+    description: 'FHIR API documentation'
+  }
+}))
 // Configure other middleware (see `middleware/index.js`)
 app.configure(middleware);
 // Set up our services (see `services/index.js`)
 app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
-// Set up swagger documentation
-app.configure(swagger({
-    docsPath: '/docs',
-    uiIndex: path.join(__dirname, '../public/docs.html'),
-    info: {
-      title: 'FHIR API',
-      description: 'FHIR API documentation'
-    }
-  }))
 
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());

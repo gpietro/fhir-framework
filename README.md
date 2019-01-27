@@ -1,4 +1,4 @@
-# fhir-framework
+# FHIR-framework
 
 ## Currently supporting STU3
 > Project based on feathers-generator

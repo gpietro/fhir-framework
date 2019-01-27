@@ -31,7 +31,7 @@ module.exports = class AppGenerator extends Generator {
       "winston@^3.0.0",
       "jsonfile",
       "cors",
-      "ajv"
+      "ajv@5.5.0"
     ];
 
     this.devDependencies = [

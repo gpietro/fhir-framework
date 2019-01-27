@@ -19,7 +19,7 @@ module.exports = function (url, options = {}) {
     let parts = url.split('/')
     let file = parts[parts.length - 1]
     console.log('validating: ' + file);
-    const schema = jsonfile.readFileSync(__dirname + `/../../../fhir/schema/${file}`);
+    const schema = jsonfile.readFileSync(__dirname + `/../../fhir/schema/${file}`);
     // const schema = await fetch(url).then(res => res.json());
     const ajv = new Ajv(Object.assign({}, {loadSchema, allErrors: true}, options));
     ajv.addMetaSchema(draft04);
