@@ -1,6 +1,6 @@
-# FHIR-framework
+# FHIR generator
 
-## Currently supporting STU3
+## Currently support only STU3
 > Project based on feathers-generator
 > A Yeoman generator for a FHIR application
 
@@ -15,7 +15,7 @@ npm install -g yo
 Then install the feathers generator.
 
 ```bash
-npm install -g yo fhir-framework
+npm install -g yo generator-fhir
 ```
 
 ## Usage
@@ -74,7 +74,7 @@ then inside the repo's directory, run `npm link`. This sets up a global
 link to your local package for running tests (`npm test`) and generating
 new fhir apps/services/hooks/etc.
 
-When finished testing, optionally run `npm uninstall fhir-framework` to remove
+When finished testing, optionally run `npm uninstall generator-fhir` to remove
 the link.
 
 ## License
