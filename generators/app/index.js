@@ -23,10 +23,13 @@ module.exports = class AppGenerator extends Generator {
       "@feathersjs/errors",
       "@feathersjs/configuration",
       "@feathersjs/express",
-      "serve-favicon",
+      "feathers-errors",
+      "feathers-swagger",
+      "serve-favicon",      
       "compression",
       "helmet",
       "winston@^3.0.0",
+      "jsonfile",
       "cors",
       "ajv"
     ];

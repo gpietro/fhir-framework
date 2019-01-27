@@ -10,7 +10,7 @@ const loadSchema = (uri) => {
   let parts = uri.split('/')
   let file = parts[parts.length - 1]
   console.log('fetching: ' + file + '...')
-  return new Promise((resolve, reject) => resolve(jsonfile.readFileSync(__dirname + `/../../../fhir/schema/${file}`)))
+  return new Promise((resolve, reject) => resolve(jsonfile.readFileSync(__dirname + `/../../fhir/schema/${file}`)))
   // fetch(uri).then(res => res.json());
 }
 

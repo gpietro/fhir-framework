@@ -15,6 +15,7 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 const channels = require('./channels');
+const swagger = require('feathers-swagger');
 
 const app = express(feathers());
 
@@ -29,6 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', express.static(app.get('public')));
+app.use('/fhir', express.static(path.join(__dirname, '..', 'fhir/schema')));
 
 // Set up Plugins and providers
 <% if (hasProvider('rest')) { %>app.configure(express.rest());<% } %>
@@ -40,6 +42,15 @@ app.configure(middleware);
 app.configure(services);
 // Set up event channels (see channels.js)
 app.configure(channels);
+// Set up swagger documentation
+app.configure(swagger({
+    docsPath: '/docs',
+    uiIndex: path.join(__dirname, '../public/docs.html'),
+    info: {
+      title: 'FHIR API',
+      description: 'FHIR API documentation'
+    }
+  }))
 
 // Configure a middleware for 404s and the error handler
 app.use(express.notFound());

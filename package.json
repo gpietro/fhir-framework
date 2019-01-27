@@ -1,6 +1,6 @@
 {
-  "name": "dragon-generator",
-  "description": "A Yeoman generator for a Dragon application",
+  "name": "fhir-framework",
+  "description": "A framework for building fhir REST API",
   "version": "1.0.0",
   "main": "generators/app/index.js",
   "license": "MIT",

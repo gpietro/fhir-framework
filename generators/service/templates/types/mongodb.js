@@ -8,9 +8,9 @@ module.exports = function(app) {
   const mongoClient = app.get("mongoClient");
   const options = { paginate };
 
-  const <%= path %> = createService(options)
-  <%= path %>.docs = initSchema('<%= resourceName %>')
-  app.use('/<%= path %>', <%= path %>);
+  const <%= resourceName %> = createService(options)
+  <%= resourceName %>.docs = initSchema('<%= resourceName %>')
+  app.use('/<%= path %>', <%= resourceName %>);
   // Get our initialized service so that we can register hooks and filters
   const service = app.service("<%= path %>");
 
