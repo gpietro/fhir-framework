@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/Expression",
+  "$ref": "#/definitions/Expression",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "Expression": {
+      "description": "A expression that is evaluated in a specified context and returns a value. The context of use of the expression must specify the context in which the expression is evaluated, and how the result of the expression is used.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "A brief, natural language description of the condition that effectively communicates the intended semantics.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "name": {
+          "description": "A short name assigned to the expression to allow for multiple reuse of the expression in the context where it is defined.",
+          "$ref": "#/definitions/id"
+        },
+        "_name": {
+          "description": "Extensions for name",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "language": {
+          "description": "The media type of the language for the expression.",
+          "enum": [
+            "text/cql",
+            "text/fhirpath",
+            "application/x-fhir-query"
+          ]
+        },
+        "_language": {
+          "description": "Extensions for language",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "expression": {
+          "description": "An expression in the specified language that returns a value.",
+          "$ref": "#/definitions/string"
+        },
+        "_expression": {
+          "description": "Extensions for expression",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "reference": {
+          "description": "A URI that defines where the expression is found.",
+          "$ref": "#/definitions/uri"
+        },
+        "_reference": {
+          "description": "Extensions for reference",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

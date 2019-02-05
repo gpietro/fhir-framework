@@ -1,1 +1,1869 @@
-{"$schema":"http://json-schema.org/draft-04/schema#","id":"http://hl7.org/fhir/json-schema/ExplanationOfBenefit","$ref":"#/definitions/ExplanationOfBenefit","description":"see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas","definitions":{"ExplanationOfBenefit":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"resourceType":{"description":"This is a ExplanationOfBenefit resource","type":"string","enum":["ExplanationOfBenefit"]},"identifier":{"description":"The EOB Business Identifier.","type":"array","items":{"$ref":"#/definitions/Identifier","type":"object"}},"status":{"description":"The status of the resource instance.","enum":["active","cancelled","draft","entered-in-error"],"type":"string"},"type":{"description":"The category of claim, eg, oral, pharmacy, vision, insitutional, professional.","$ref":"#/definitions/CodeableConcept","type":"object"},"subType":{"description":"A finer grained suite of claim subtype codes which may convey Inpatient vs Outpatient and/or a specialty service. In the US the BillType.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"patient":{"description":"Patient Resource.","$ref":"#/definitions/Reference","type":"object"},"billablePeriod":{"description":"The billable period for which charges are being submitted.","$ref":"#/definitions/Period","type":"object"},"created":{"description":"The date when the EOB was created.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"enterer":{"description":"The person who created the explanation of benefit.","$ref":"#/definitions/Reference","type":"object"},"insurer":{"description":"The insurer which is responsible for the explanation of benefit.","$ref":"#/definitions/Reference","type":"object"},"provider":{"description":"The provider which is responsible for the claim.","$ref":"#/definitions/Reference","type":"object"},"organization":{"description":"The provider which is responsible for the claim.","$ref":"#/definitions/Reference","type":"object"},"referral":{"description":"The referral resource which lists the date, practitioner, reason and other supporting information.","$ref":"#/definitions/Reference","type":"object"},"facility":{"description":"Facility where the services were provided.","$ref":"#/definitions/Reference","type":"object"},"claim":{"description":"The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.","$ref":"#/definitions/Reference","type":"object"},"claimResponse":{"description":"The business identifier for the instance: invoice number, claim number, pre-determination or pre-authorization number.","$ref":"#/definitions/Reference","type":"object"},"outcome":{"description":"Processing outcome errror, partial or complete processing.","$ref":"#/definitions/CodeableConcept","type":"object"},"disposition":{"description":"A description of the status of the adjudication.","type":"string"},"related":{"description":"Other claims which are related to this claim such as prior claim versions or for related services.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Related"}},"prescription":{"description":"Prescription to support the dispensing of Pharmacy or Vision products.","$ref":"#/definitions/Reference","type":"object"},"originalPrescription":{"description":"Original prescription which has been superceded by this prescription to support the dispensing of pharmacy services, medications or products. For example, a physician may prescribe a medication which the pharmacy determines is contraindicated, or for which the patient has an intolerance, and therefor issues a new precription for an alternate medication which has the same theraputic intent. The prescription from the pharmacy becomes the 'prescription' and that from the physician becomes the 'original prescription'.","$ref":"#/definitions/Reference","type":"object"},"payee":{"description":"The party to be reimbursed for the services.","$ref":"#/definitions/ExplanationOfBenefit_Payee"},"information":{"description":"Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues. Often there are mutiple jurisdiction specific valuesets which are required.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Information"}},"careTeam":{"description":"The members of the team who provided the overall service as well as their role and whether responsible and qualifications.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_CareTeam"}},"diagnosis":{"description":"Ordered list of patient diagnosis for which care is sought.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Diagnosis"}},"procedure":{"description":"Ordered list of patient procedures performed to support the adjudication.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Procedure"}},"precedence":{"description":"Precedence (primary, secondary, etc.).","type":"number","pattern":"[1-9][0-9]*"},"insurance":{"description":"Financial instrument by which payment information for health care.","$ref":"#/definitions/ExplanationOfBenefit_Insurance"},"accident":{"description":"An accident which resulted in the need for healthcare services.","$ref":"#/definitions/ExplanationOfBenefit_Accident"},"employmentImpacted":{"description":"The start and optional end dates of when the patient was precluded from working due to the treatable condition(s).","$ref":"#/definitions/Period","type":"object"},"hospitalization":{"description":"The start and optional end dates of when the patient was confined to a treatment center.","$ref":"#/definitions/Period","type":"object"},"item":{"description":"First tier of goods and services.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Item"}},"addItem":{"description":"The first tier service adjudications for payor added services.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_AddItem"}},"totalCost":{"description":"The total cost of the services reported.","$ref":"#/definitions/Money","type":"object"},"unallocDeductable":{"description":"The amount of deductable applied which was not allocated to any particular service line.","$ref":"#/definitions/Money","type":"object"},"totalBenefit":{"description":"Total amount of benefit payable (Equal to sum of the Benefit amounts from all detail lines and additions less the Unallocated Deductable).","$ref":"#/definitions/Money","type":"object"},"payment":{"description":"Payment details for the claim if the claim has been paid.","$ref":"#/definitions/ExplanationOfBenefit_Payment"},"form":{"description":"The form to be used for printing the content.","$ref":"#/definitions/CodeableConcept","type":"object"},"processNote":{"description":"Note text.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_ProcessNote"}},"benefitBalance":{"description":"Balance by Benefit Category.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_BenefitBalance"}}},"required":["resourceType"]},"ExplanationOfBenefit_Related":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"claim":{"description":"Other claims which are related to this claim such as prior claim versions or for related services.","$ref":"#/definitions/Reference","type":"object"},"relationship":{"description":"For example prior or umbrella.","$ref":"#/definitions/CodeableConcept","type":"object"},"reference":{"description":"An alternate organizational reference to the case or file to which this particular claim pertains - eg Property/Casualy insurer claim # or Workers Compensation case # .","$ref":"#/definitions/Identifier","type":"object"}}},"ExplanationOfBenefit_Payee":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"type":{"description":"Type of Party to be reimbursed: Subscriber, provider, other.","$ref":"#/definitions/CodeableConcept","type":"object"},"resourceType":{"description":"organization | patient | practitioner | relatedperson.","$ref":"#/definitions/CodeableConcept","type":"object"},"party":{"description":"Party to be reimbursed: Subscriber, provider, other.","$ref":"#/definitions/Reference","type":"object"}}},"ExplanationOfBenefit_Information":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequence":{"description":"Sequence of the information element which serves to provide a link.","type":"number","pattern":"[1-9][0-9]*"},"category":{"description":"The general class of the information supplied: information; exception; accident, employment; onset, etc.","$ref":"#/definitions/CodeableConcept","type":"object"},"code":{"description":"System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought which may influence the adjudication.","$ref":"#/definitions/CodeableConcept","type":"object"},"timingDate":{"description":"The date when or period to which this information refers.","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?","type":"string"},"timingPeriod":{"description":"The date when or period to which this information refers.","$ref":"#/definitions/Period","type":"object"},"valueString":{"description":"Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.","type":"string"},"valueQuantity":{"description":"Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.","$ref":"#/definitions/Quantity","type":"object"},"valueAttachment":{"description":"Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.","$ref":"#/definitions/Attachment","type":"object"},"valueReference":{"description":"Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.","$ref":"#/definitions/Reference","type":"object"},"reason":{"description":"For example, provides the reason for: the additional stay, or missing tooth or any other situation where a reason code is required in addition to the content.","$ref":"#/definitions/Coding","type":"object"}},"required":["category"]},"ExplanationOfBenefit_CareTeam":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequence":{"description":"Sequence of careteam which serves to order and provide a link.","type":"number","pattern":"[1-9][0-9]*"},"provider":{"description":"The members of the team who provided the overall service.","$ref":"#/definitions/Reference","type":"object"},"responsible":{"description":"The practitioner who is billing and responsible for the claimed services rendered to the patient.","type":"boolean"},"role":{"description":"The lead, assisting or supervising practitioner and their discipline if a multidisiplinary team.","$ref":"#/definitions/CodeableConcept","type":"object"},"qualification":{"description":"The qualification which is applicable for this service.","$ref":"#/definitions/CodeableConcept","type":"object"}},"required":["provider"]},"ExplanationOfBenefit_Diagnosis":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequence":{"description":"Sequence of diagnosis which serves to provide a link.","type":"number","pattern":"[1-9][0-9]*"},"diagnosisCodeableConcept":{"description":"The diagnosis.","$ref":"#/definitions/CodeableConcept","type":"object"},"diagnosisReference":{"description":"The diagnosis.","$ref":"#/definitions/Reference","type":"object"},"type":{"description":"The type of the Diagnosis, for example: admitting, primary, secondary, discharge.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"packageCode":{"description":"The package billing code, for example DRG, based on the assigned grouping code system.","$ref":"#/definitions/CodeableConcept","type":"object"}}},"ExplanationOfBenefit_Procedure":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequence":{"description":"Sequence of procedures which serves to order and provide a link.","type":"number","pattern":"[1-9][0-9]*"},"date":{"description":"Date and optionally time the procedure was performed .","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"procedureCodeableConcept":{"description":"The procedure code.","$ref":"#/definitions/CodeableConcept","type":"object"},"procedureReference":{"description":"The procedure code.","$ref":"#/definitions/Reference","type":"object"}}},"ExplanationOfBenefit_Insurance":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"coverage":{"description":"Reference to the program or plan identification, underwriter or payor.","$ref":"#/definitions/Reference","type":"object"},"preAuthRef":{"description":"A list of references from the Insurer to which these services pertain.","type":"array","items":{"type":"string"}}}},"ExplanationOfBenefit_Accident":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"date":{"description":"Date of an accident which these services are addressing.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?"},"type":{"description":"Type of accident: work, auto, etc.","$ref":"#/definitions/CodeableConcept","type":"object"},"locationAddress":{"description":"Where the accident occurred.","$ref":"#/definitions/Address","type":"object"},"locationReference":{"description":"Where the accident occurred.","$ref":"#/definitions/Reference","type":"object"}}},"ExplanationOfBenefit_Item":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequence":{"description":"A service line number.","type":"number","pattern":"[1-9][0-9]*"},"careTeamLinkId":{"description":"Careteam applicable for this service or product line.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"diagnosisLinkId":{"description":"Diagnosis applicable for this service or product line.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"procedureLinkId":{"description":"Procedures applicable for this service or product line.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"informationLinkId":{"description":"Exceptions, special conditions and supporting information pplicable for this service or product line.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"revenue":{"description":"The type of reveneu or cost center providing the product and/or service.","$ref":"#/definitions/CodeableConcept","type":"object"},"category":{"description":"Health Care Service Type Codes  to identify the classification of service or benefits.","$ref":"#/definitions/CodeableConcept","type":"object"},"service":{"description":"If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.","$ref":"#/definitions/CodeableConcept","type":"object"},"modifier":{"description":"Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"programCode":{"description":"For programs which require reson codes for the inclusion, covering, of this billed item under the program or sub-program.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"servicedDate":{"description":"The date or dates when the enclosed suite of services were performed or completed.","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?","type":"string"},"servicedPeriod":{"description":"The date or dates when the enclosed suite of services were performed or completed.","$ref":"#/definitions/Period","type":"object"},"locationCodeableConcept":{"description":"Where the service was provided.","$ref":"#/definitions/CodeableConcept","type":"object"},"locationAddress":{"description":"Where the service was provided.","$ref":"#/definitions/Address","type":"object"},"locationReference":{"description":"Where the service was provided.","$ref":"#/definitions/Reference","type":"object"},"quantity":{"description":"The number of repetitions of a service or product.","$ref":"#/definitions/Quantity","type":"object"},"unitPrice":{"description":"If the item is a node then this is the fee for the product or service, otherwise this is the total of the fees for the children of the group.","$ref":"#/definitions/Money","type":"object"},"factor":{"description":"A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.","type":"number","pattern":"-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"},"net":{"description":"The quantity times the unit price for an addittional service or product or charge. For example, the formula: unit Quantity * unit Price (Cost per Point) * factor Number  * points = net Amount. Quantity, factor and points are assumed to be 1 if not supplied.","$ref":"#/definitions/Money","type":"object"},"udi":{"description":"List of Unique Device Identifiers associated with this line item.","type":"array","items":{"$ref":"#/definitions/Reference","type":"object"}},"bodySite":{"description":"Physical service site on the patient (limb, tooth, etc).","$ref":"#/definitions/CodeableConcept","type":"object"},"subSite":{"description":"A region or surface of the site, eg. limb region or tooth surface(s).","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"encounter":{"description":"A billed item may include goods or services provided in multiple encounters.","type":"array","items":{"$ref":"#/definitions/Reference","type":"object"}},"noteNumber":{"description":"A list of note references to the notes provided below.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"adjudication":{"description":"The adjudications results.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Adjudication"}},"detail":{"description":"Second tier of goods and services.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Detail"}}}},"ExplanationOfBenefit_Adjudication":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"category":{"description":"Code indicating: Co-Pay, deductable, elegible, benefit, tax, etc.","$ref":"#/definitions/CodeableConcept","type":"object"},"reason":{"description":"Adjudication reason such as limit reached.","$ref":"#/definitions/CodeableConcept","type":"object"},"amount":{"description":"Monitory amount associated with the code.","$ref":"#/definitions/Money","type":"object"},"value":{"description":"A non-monetary value for example a percentage. Mutually exclusive to the amount element above.","type":"number","pattern":"-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"}},"required":["category"]},"ExplanationOfBenefit_Detail":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequence":{"description":"A service line number.","type":"number","pattern":"[1-9][0-9]*"},"type":{"description":"The type of product or service.","$ref":"#/definitions/CodeableConcept","type":"object"},"revenue":{"description":"The type of reveneu or cost center providing the product and/or service.","$ref":"#/definitions/CodeableConcept","type":"object"},"category":{"description":"Health Care Service Type Codes  to identify the classification of service or benefits.","$ref":"#/definitions/CodeableConcept","type":"object"},"service":{"description":"If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.","$ref":"#/definitions/CodeableConcept","type":"object"},"modifier":{"description":"Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"programCode":{"description":"For programs which require reson codes for the inclusion, covering, of this billed item under the program or sub-program.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"quantity":{"description":"The number of repetitions of a service or product.","$ref":"#/definitions/Quantity","type":"object"},"unitPrice":{"description":"If the item is a node then this is the fee for the product or service, otherwise this is the total of the fees for the children of the group.","$ref":"#/definitions/Money","type":"object"},"factor":{"description":"A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.","type":"number","pattern":"-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"},"net":{"description":"The quantity times the unit price for an addittional service or product or charge. For example, the formula: unit Quantity * unit Price (Cost per Point) * factor Number  * points = net Amount. Quantity, factor and points are assumed to be 1 if not supplied.","$ref":"#/definitions/Money","type":"object"},"udi":{"description":"List of Unique Device Identifiers associated with this line item.","type":"array","items":{"$ref":"#/definitions/Reference","type":"object"}},"noteNumber":{"description":"A list of note references to the notes provided below.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"adjudication":{"description":"The adjudications results.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Adjudication"}},"subDetail":{"description":"Third tier of goods and services.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_SubDetail"}}},"required":["type"]},"ExplanationOfBenefit_SubDetail":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequence":{"description":"A service line number.","type":"number","pattern":"[1-9][0-9]*"},"type":{"description":"The type of product or service.","$ref":"#/definitions/CodeableConcept","type":"object"},"revenue":{"description":"The type of reveneu or cost center providing the product and/or service.","$ref":"#/definitions/CodeableConcept","type":"object"},"category":{"description":"Health Care Service Type Codes  to identify the classification of service or benefits.","$ref":"#/definitions/CodeableConcept","type":"object"},"service":{"description":"A code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI).","$ref":"#/definitions/CodeableConcept","type":"object"},"modifier":{"description":"Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"programCode":{"description":"For programs which require reson codes for the inclusion, covering, of this billed item under the program or sub-program.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"quantity":{"description":"The number of repetitions of a service or product.","$ref":"#/definitions/Quantity","type":"object"},"unitPrice":{"description":"The fee for an addittional service or product or charge.","$ref":"#/definitions/Money","type":"object"},"factor":{"description":"A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.","type":"number","pattern":"-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"},"net":{"description":"The quantity times the unit price for an addittional service or product or charge. For example, the formula: unit Quantity * unit Price (Cost per Point) * factor Number  * points = net Amount. Quantity, factor and points are assumed to be 1 if not supplied.","$ref":"#/definitions/Money","type":"object"},"udi":{"description":"List of Unique Device Identifiers associated with this line item.","type":"array","items":{"$ref":"#/definitions/Reference","type":"object"}},"noteNumber":{"description":"A list of note references to the notes provided below.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"adjudication":{"description":"The adjudications results.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Adjudication"}}},"required":["type"]},"ExplanationOfBenefit_AddItem":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"sequenceLinkId":{"description":"List of input service items which this service line is intended to replace.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"revenue":{"description":"The type of reveneu or cost center providing the product and/or service.","$ref":"#/definitions/CodeableConcept","type":"object"},"category":{"description":"Health Care Service Type Codes  to identify the classification of service or benefits.","$ref":"#/definitions/CodeableConcept","type":"object"},"service":{"description":"If this is an actual service or product line, ie. not a Group, then use code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI). If a grouping item then use a group code to indicate the type of thing being grouped eg. 'glasses' or 'compound'.","$ref":"#/definitions/CodeableConcept","type":"object"},"modifier":{"description":"Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"fee":{"description":"The fee charged for the professional service or product.","$ref":"#/definitions/Money","type":"object"},"noteNumber":{"description":"A list of note references to the notes provided below.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"adjudication":{"description":"The adjudications results.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Adjudication"}},"detail":{"description":"The second tier service adjudications for payor added services.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Detail1"}}}},"ExplanationOfBenefit_Detail1":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"revenue":{"description":"The type of reveneu or cost center providing the product and/or service.","$ref":"#/definitions/CodeableConcept","type":"object"},"category":{"description":"Health Care Service Type Codes  to identify the classification of service or benefits.","$ref":"#/definitions/CodeableConcept","type":"object"},"service":{"description":"A code to indicate the Professional Service or Product supplied (eg. CTP, HCPCS,USCLS,ICD10, NCPDP,DIN,ACHI,CCI).","$ref":"#/definitions/CodeableConcept","type":"object"},"modifier":{"description":"Item typification or modifiers codes, eg for Oral whether the treatment is cosmetic or associated with TMJ, or for medical whether the treatment was outside the clinic or out of office hours.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"fee":{"description":"The fee charged for the professional service or product.","$ref":"#/definitions/Money","type":"object"},"noteNumber":{"description":"A list of note references to the notes provided below.","type":"array","items":{"type":"number","pattern":"[1-9][0-9]*"}},"adjudication":{"description":"The adjudications results.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Adjudication"}}}},"ExplanationOfBenefit_Payment":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"type":{"description":"Whether this represents partial or complete payment of the claim.","$ref":"#/definitions/CodeableConcept","type":"object"},"adjustment":{"description":"Adjustment to the payment of this transaction which is not related to adjudication of this transaction.","$ref":"#/definitions/Money","type":"object"},"adjustmentReason":{"description":"Reason for the payment adjustment.","$ref":"#/definitions/CodeableConcept","type":"object"},"date":{"description":"Estimated payment date.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1]))?)?"},"amount":{"description":"Payable less any payment adjustment.","$ref":"#/definitions/Money","type":"object"},"identifier":{"description":"Payment identifer.","$ref":"#/definitions/Identifier","type":"object"}}},"ExplanationOfBenefit_ProcessNote":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"number":{"description":"An integer associated with each note which may be referred to from each service line item.","type":"number","pattern":"[1-9][0-9]*"},"type":{"description":"The note purpose: Print/Display.","$ref":"#/definitions/CodeableConcept","type":"object"},"text":{"description":"The note text.","type":"string"},"language":{"description":"The ISO-639-1 alpha 2 code in lower case for the language, optionally followed by a hyphen and the ISO-3166-1 alpha 2 code for the region in upper case; e.g. \"en\" for English, or \"en-US\" for American English versus \"en-EN\" for England English.","$ref":"#/definitions/CodeableConcept","type":"object"}}},"ExplanationOfBenefit_BenefitBalance":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"category":{"description":"Dental, Vision, Medical, Pharmacy, Rehab etc.","$ref":"#/definitions/CodeableConcept","type":"object"},"subCategory":{"description":"Dental: basic, major, ortho; Vision exam, glasses, contacts; etc.","$ref":"#/definitions/CodeableConcept","type":"object"},"excluded":{"description":"True if the indicated class of service is excluded from the plan, missing or False indicated the service is included in the coverage.","type":"boolean"},"name":{"description":"A short name or tag for the benefit, for example MED01, or DENT2.","type":"string"},"description":{"description":"A richer description of the benefit, for example 'DENT2 covers 100% of basic, 50% of major but exclused Ortho, Implants and Costmetic services'.","type":"string"},"network":{"description":"Network designation.","$ref":"#/definitions/CodeableConcept","type":"object"},"unit":{"description":"Unit designation: individual or family.","$ref":"#/definitions/CodeableConcept","type":"object"},"term":{"description":"The term or period of the values such as 'maximum lifetime benefit' or 'maximum annual vistis'.","$ref":"#/definitions/CodeableConcept","type":"object"},"financial":{"description":"Benefits Used to date.","type":"array","items":{"$ref":"#/definitions/ExplanationOfBenefit_Financial"}}},"required":["category"]},"ExplanationOfBenefit_Financial":{"description":"This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.","properties":{"type":{"description":"Deductable, visits, benefit amount.","$ref":"#/definitions/CodeableConcept","type":"object"},"allowedUnsignedInt":{"description":"Benefits allowed.","pattern":"[0]|([1-9][0-9]*)","type":"number"},"allowedString":{"description":"Benefits allowed.","type":"string"},"allowedMoney":{"description":"Benefits allowed.","$ref":"#/definitions/Money","type":"object"},"usedUnsignedInt":{"description":"Benefits used.","pattern":"[0]|([1-9][0-9]*)","type":"number"},"usedMoney":{"description":"Benefits used.","$ref":"#/definitions/Money","type":"object"}},"required":["type"]},"Identifier":{"description":"A technical identifier - identifies some entity uniquely and unambiguously.","properties":{"use":{"description":"The purpose of this identifier.","enum":["usual","official","temp","secondary"],"type":"string"},"type":{"description":"A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.","$ref":"#/definitions/CodeableConcept","type":"object"},"system":{"description":"Establishes the namespace for the value - that is, a URL that describes a set values that are unique.","type":"string"},"value":{"description":"The portion of the identifier typically relevant to the user and which is unique within the context of the system.","type":"string"},"period":{"description":"Time period during which identifier is/was valid for use.","$ref":"#/definitions/Period","type":"object"},"assigner":{"description":"Organization that issued/manages the identifier.","$ref":"#/definitions/Reference","type":"object"}}},"CodeableConcept":{"description":"A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.","properties":{"coding":{"description":"A reference to a code defined by a terminology system.","type":"array","items":{"$ref":"#/definitions/Coding","type":"object"}},"text":{"description":"A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.","type":"string"}}},"Reference":{"description":"A reference from one resource to another.","properties":{"reference":{"description":"A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources.","type":"string"},"identifier":{"description":"An identifier for the other resource. This is used when there is no way to reference the other resource directly, either because the entity is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference.","$ref":"#/definitions/Identifier","type":"object"},"display":{"description":"Plain text narrative that identifies the resource in addition to the resource reference.","type":"string"}}},"Period":{"description":"A time period defined by a start and end date and optionally time.","properties":{"start":{"description":"The start of the period. The boundary is inclusive.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"end":{"description":"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"}}},"Money":{"description":"An amount of economic utility in some recognized currency.","properties":{}},"Quantity":{"description":"A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating currencies.","properties":{"value":{"description":"The value of the measured amount. The value includes an implicit precision in the presentation of the value.","type":"number","pattern":"-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"},"comparator":{"description":"How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.","enum":["<","<=",">=",">"],"type":"string"},"unit":{"description":"A human-readable form of the unit.","type":"string"},"system":{"description":"The identification of the system that provides the coded form of the unit.","type":"string"},"code":{"description":"A computer processable form of the unit in some unit representation system.","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"}}},"Attachment":{"description":"For referring to data content defined in other formats.","properties":{"contentType":{"description":"Identifies the type of the data in the attachment and allows a method to be chosen to interpret or render the data. Includes mime type parameters such as charset where appropriate.","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"},"language":{"description":"The human language of the content. The value can be any valid value according to BCP 47.","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"},"data":{"description":"The actual data of the attachment - a sequence of bytes. In XML, represented using base64.","type":"string"},"url":{"description":"An alternative location where the data can be accessed.","type":"string"},"size":{"description":"The number of bytes of data that make up this attachment (before base64 encoding, if that is done).","type":"number","pattern":"[0]|([1-9][0-9]*)"},"hash":{"description":"The calculated hash of the data using SHA-1. Represented using base64.","type":"string"},"title":{"description":"A label or set of text to display in place of the data.","type":"string"},"creation":{"description":"The date that the attachment was first created.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"}}},"Coding":{"description":"A reference to a code defined by a terminology system.","properties":{"system":{"description":"The identification of the code system that defines the meaning of the symbol in the code.","type":"string"},"version":{"description":"The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged.","type":"string"},"code":{"description":"A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"},"display":{"description":"A representation of the meaning of the code in the system, following the rules of the system.","type":"string"},"userSelected":{"description":"Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays).","type":"boolean"}}},"Address":{"description":"An address expressed using postal conventions (as opposed to GPS or other location definition formats).  This data type may be used to convey addresses for use in delivering mail as well as for visiting locations which might not be valid for mail delivery.  There are a variety of postal address formats defined around the world.","properties":{"use":{"description":"The purpose of this address.","enum":["home","work","temp","old"],"type":"string"},"type":{"description":"Distinguishes between physical addresses (those you can visit) and mailing addresses (e.g. PO Boxes and care-of addresses). Most addresses are both.","enum":["postal","physical","both"],"type":"string"},"text":{"description":"A full text representation of the address.","type":"string"},"line":{"description":"This component contains the house number, apartment number, street name, street direction,  P.O. Box number, delivery hints, and similar address information.","type":"array","items":{"type":"string"}},"city":{"description":"The name of the city, town, village or other community or delivery center.","type":"string"},"district":{"description":"The name of the administrative area (county).","type":"string"},"state":{"description":"Sub-unit of a country with limited sovereignty in a federally organized country. A code may be used if codes are in common use (i.e. US 2 letter state codes).","type":"string"},"postalCode":{"description":"A postal code designating a region defined by the postal service.","type":"string"},"country":{"description":"Country - a nation as commonly understood or generally accepted.","type":"string"},"period":{"description":"Time period when address was/is in use.","$ref":"#/definitions/Period","type":"object"}}}},"type":"object"}
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/ExplanationOfBenefit",
+  "$ref": "#/definitions/ExplanationOfBenefit",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "ExplanationOfBenefit": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "resourceType": {
+          "description": "This is a ExplanationOfBenefit resource",
+          "const": "ExplanationOfBenefit"
+        },
+        "id": {
+          "description": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+          "$ref": "id.schema.json#/definitions/id"
+        },
+        "meta": {
+          "description": "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+          "$ref": "Meta.schema.json#/definitions/Meta"
+        },
+        "implicitRules": {
+          "description": "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+          "$ref": "#/definitions/uri"
+        },
+        "_implicitRules": {
+          "description": "Extensions for implicitRules",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "language": {
+          "description": "The base language in which the resource is written.",
+          "$ref": "#/definitions/code"
+        },
+        "_language": {
+          "description": "Extensions for language",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "text": {
+          "description": "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+          "$ref": "Narrative.schema.json#/definitions/Narrative"
+        },
+        "contained": {
+          "description": "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.",
+          "items": {
+            "$ref": "ResourceList.schema.json#/definitions/ResourceList"
+          },
+          "type": "array"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "identifier": {
+          "description": "A unique identifier assigned to this explanation of benefit.",
+          "items": {
+            "$ref": "Identifier.schema.json#/definitions/Identifier"
+          },
+          "type": "array"
+        },
+        "status": {
+          "description": "The status of the resource instance.",
+          "enum": [
+            "active",
+            "cancelled",
+            "draft",
+            "entered-in-error"
+          ]
+        },
+        "_status": {
+          "description": "Extensions for status",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "type": {
+          "description": "The category of claim, e.g. oral, pharmacy, vision, institutional, professional.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "subType": {
+          "description": "A finer grained suite of claim type codes which may convey additional information such as Inpatient vs Outpatient and/or a specialty service.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "use": {
+          "description": "A code to indicate whether the nature of the request is: to request adjudication of products and services previously rendered; or requesting authorization and adjudication for provision in the future; or requesting the non-binding adjudication of the listed products and services which could be provided in the future.",
+          "$ref": "#/definitions/code"
+        },
+        "_use": {
+          "description": "Extensions for use",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patient": {
+          "description": "The party to whom the professional services and/or products have been supplied or are being considered and for whom actual for forecast reimbursement is sought.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "billablePeriod": {
+          "description": "The period for which charges are being submitted.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "created": {
+          "description": "The date this resource was created.",
+          "$ref": "#/definitions/dateTime"
+        },
+        "_created": {
+          "description": "Extensions for created",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "enterer": {
+          "description": "Individual who created the claim, predetermination or preauthorization.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "insurer": {
+          "description": "The party responsible for authorization, adjudication and reimbursement.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "provider": {
+          "description": "The provider which is responsible for the claim, predetermination or preauthorization.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "priority": {
+          "description": "The provider-required urgency of processing the request. Typical values include: stat, routine deferred.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "fundsReserveRequested": {
+          "description": "A code to indicate whether and for whom funds are to be reserved for future claims.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "fundsReserve": {
+          "description": "A code, used only on a response to a preauthorization, to indicate whether the benefits payable have been reserved and for whom.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "related": {
+          "description": "Other claims which are related to this claim such as prior submissions or claims for related services or for the same event.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Related"
+          },
+          "type": "array"
+        },
+        "prescription": {
+          "description": "Prescription to support the dispensing of pharmacy, device or vision products.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "originalPrescription": {
+          "description": "Original prescription which has been superseded by this prescription to support the dispensing of pharmacy services, medications or products.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "payee": {
+          "description": "The party to be reimbursed for cost of the products and services according to the terms of the policy.",
+          "$ref": "#/definitions/ExplanationOfBenefit_Payee"
+        },
+        "referral": {
+          "description": "A reference to a referral resource.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "facility": {
+          "description": "Facility where the services were provided.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "claim": {
+          "description": "The business identifier for the instance of the adjudication request: claim predetermination or preauthorization.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "claimResponse": {
+          "description": "The business identifier for the instance of the adjudication response: claim, predetermination or preauthorization response.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "outcome": {
+          "description": "The outcome of the claim, predetermination, or preauthorization processing.",
+          "$ref": "#/definitions/code"
+        },
+        "_outcome": {
+          "description": "Extensions for outcome",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "disposition": {
+          "description": "A human readable description of the status of the adjudication.",
+          "$ref": "#/definitions/string"
+        },
+        "_disposition": {
+          "description": "Extensions for disposition",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "preAuthRef": {
+          "description": "Reference from the Insurer which is used in later communications which refers to this adjudication.",
+          "items": {
+            "$ref": "#/definitions/string"
+          },
+          "type": "array"
+        },
+        "_preAuthRef": {
+          "description": "Extensions for preAuthRef",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "preAuthRefPeriod": {
+          "description": "The timeframe during which the supplied preauthorization reference may be quoted on claims to obtain the adjudication as provided.",
+          "items": {
+            "$ref": "Period.schema.json#/definitions/Period"
+          },
+          "type": "array"
+        },
+        "careTeam": {
+          "description": "The members of the team who provided the products and services.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_CareTeam"
+          },
+          "type": "array"
+        },
+        "supportingInfo": {
+          "description": "Additional information codes regarding exceptions, special considerations, the condition, situation, prior or concurrent issues.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_SupportingInfo"
+          },
+          "type": "array"
+        },
+        "diagnosis": {
+          "description": "Information about diagnoses relevant to the claim items.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Diagnosis"
+          },
+          "type": "array"
+        },
+        "procedure": {
+          "description": "Procedures performed on the patient relevant to the billing items with the claim.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Procedure"
+          },
+          "type": "array"
+        },
+        "precedence": {
+          "description": "This indicates the relative order of a series of EOBs related to different coverages for the same suite of services.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_precedence": {
+          "description": "Extensions for precedence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "insurance": {
+          "description": "Financial instruments for reimbursement for the health care products and services specified on the claim.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Insurance"
+          },
+          "type": "array"
+        },
+        "accident": {
+          "description": "Details of a accident which resulted in injuries which required the products and services listed in the claim.",
+          "$ref": "#/definitions/ExplanationOfBenefit_Accident"
+        },
+        "item": {
+          "description": "A claim line. Either a simple (a product or service) or a \u0027group\u0027 of details which can also be a simple items or groups of sub-details.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Item"
+          },
+          "type": "array"
+        },
+        "addItem": {
+          "description": "The first-tier service adjudications for payor added product or service lines.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_AddItem"
+          },
+          "type": "array"
+        },
+        "adjudication": {
+          "description": "The adjudication results which are presented at the header level rather than at the line-item or add-item levels.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Adjudication"
+          },
+          "type": "array"
+        },
+        "total": {
+          "description": "Categorized monetary totals for the adjudication.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Total"
+          },
+          "type": "array"
+        },
+        "payment": {
+          "description": "Payment details for the adjudication of the claim.",
+          "$ref": "#/definitions/ExplanationOfBenefit_Payment"
+        },
+        "formCode": {
+          "description": "A code for the form to be used for printing the content.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "form": {
+          "description": "The actual form, by reference or inclusion, for printing the content or an EOB.",
+          "$ref": "Attachment.schema.json#/definitions/Attachment"
+        },
+        "processNote": {
+          "description": "A note that describes or explains adjudication results in a human readable form.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_ProcessNote"
+          },
+          "type": "array"
+        },
+        "benefitPeriod": {
+          "description": "The term of the benefits documented in this response.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "benefitBalance": {
+          "description": "Balance by Benefit Category.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_BenefitBalance"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "insurance",
+        "provider",
+        "patient",
+        "insurer",
+        "type",
+        "resourceType"
+      ]
+    },
+    "ExplanationOfBenefit_Related": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "claim": {
+          "description": "Reference to a related claim.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "relationship": {
+          "description": "A code to convey how the claims are related.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "reference": {
+          "description": "An alternate organizational reference to the case or file to which this particular claim pertains.",
+          "$ref": "Identifier.schema.json#/definitions/Identifier"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExplanationOfBenefit_Payee": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Type of Party to be reimbursed: Subscriber, provider, other.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "party": {
+          "description": "Reference to the individual or organization to whom any payment will be made.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExplanationOfBenefit_CareTeam": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "A number to uniquely identify care team entries.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "provider": {
+          "description": "Member of the team who provided the product or service.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "responsible": {
+          "description": "The party who is billing and/or responsible for the claimed products or services.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_responsible": {
+          "description": "Extensions for responsible",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "role": {
+          "description": "The lead, assisting or supervising practitioner and their discipline if a multidisciplinary team.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "qualification": {
+          "description": "The qualification of the practitioner which is applicable for this service.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "provider"
+      ]
+    },
+    "ExplanationOfBenefit_SupportingInfo": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "A number to uniquely identify supporting information entries.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "category": {
+          "description": "The general class of the information supplied: information; exception; accident, employment; onset, etc.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "code": {
+          "description": "System and code pertaining to the specific information regarding special conditions relating to the setting, treatment or patient  for which care is sought.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "timingDate": {
+          "description": "The date when or period to which this information refers.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_timingDate": {
+          "description": "Extensions for timingDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "timingPeriod": {
+          "description": "The date when or period to which this information refers.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "valueBoolean": {
+          "description": "Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_valueBoolean": {
+          "description": "Extensions for valueBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueString": {
+          "description": "Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_valueString": {
+          "description": "Extensions for valueString",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueQuantity": {
+          "description": "Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "valueAttachment": {
+          "description": "Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.",
+          "$ref": "Attachment.schema.json#/definitions/Attachment"
+        },
+        "valueReference": {
+          "description": "Additional data or information such as resources, documents, images etc. including references to the data or the actual inclusion of the data.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "reason": {
+          "description": "Provides the reason in the situation where a reason code is required in addition to the content.",
+          "$ref": "Coding.schema.json#/definitions/Coding"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "category"
+      ]
+    },
+    "ExplanationOfBenefit_Diagnosis": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "A number to uniquely identify diagnosis entries.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "diagnosisCodeableConcept": {
+          "description": "The nature of illness or problem in a coded form or as a reference to an external defined Condition.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "diagnosisReference": {
+          "description": "The nature of illness or problem in a coded form or as a reference to an external defined Condition.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "type": {
+          "description": "When the condition was observed or the relative ranking.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "onAdmission": {
+          "description": "Indication of whether the diagnosis was present on admission to a facility.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "packageCode": {
+          "description": "A package billing code or bundle code used to group products and services to a particular health condition (such as heart attack) which is based on a predetermined grouping code system.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExplanationOfBenefit_Procedure": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "A number to uniquely identify procedure entries.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "type": {
+          "description": "When the condition was observed or the relative ranking.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "date": {
+          "description": "Date and optionally time the procedure was performed.",
+          "$ref": "#/definitions/dateTime"
+        },
+        "_date": {
+          "description": "Extensions for date",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "procedureCodeableConcept": {
+          "description": "The code or reference to a Procedure resource which identifies the clinical intervention performed.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "procedureReference": {
+          "description": "The code or reference to a Procedure resource which identifies the clinical intervention performed.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "udi": {
+          "description": "Unique Device Identifiers associated with this line item.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExplanationOfBenefit_Insurance": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "focal": {
+          "description": "A flag to indicate that this Coverage is to be used for adjudication of this claim when set to true.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_focal": {
+          "description": "Extensions for focal",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "coverage": {
+          "description": "Reference to the insurance card level information contained in the Coverage resource. The coverage issuing insurer will use these details to locate the patient\u0027s actual coverage within the insurer\u0027s information system.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "preAuthRef": {
+          "description": "Reference numbers previously provided by the insurer to the provider to be quoted on subsequent claims containing services or products related to the prior authorization.",
+          "items": {
+            "$ref": "#/definitions/string"
+          },
+          "type": "array"
+        },
+        "_preAuthRef": {
+          "description": "Extensions for preAuthRef",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "coverage"
+      ]
+    },
+    "ExplanationOfBenefit_Accident": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "date": {
+          "description": "Date of an accident event  related to the products and services contained in the claim.",
+          "$ref": "#/definitions/date"
+        },
+        "_date": {
+          "description": "Extensions for date",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "type": {
+          "description": "The type or context of the accident event for the purposes of selection of potential insurance coverages and determination of coordination between insurers.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "locationAddress": {
+          "description": "The physical location of the accident event.",
+          "$ref": "Address.schema.json#/definitions/Address"
+        },
+        "locationReference": {
+          "description": "The physical location of the accident event.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExplanationOfBenefit_Item": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "A number to uniquely identify item entries.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "careTeamSequence": {
+          "description": "Care team members related to this service or product.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_careTeamSequence": {
+          "description": "Extensions for careTeamSequence",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "diagnosisSequence": {
+          "description": "Diagnoses applicable for this service or product.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_diagnosisSequence": {
+          "description": "Extensions for diagnosisSequence",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "procedureSequence": {
+          "description": "Procedures applicable for this service or product.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_procedureSequence": {
+          "description": "Extensions for procedureSequence",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "informationSequence": {
+          "description": "Exceptions, special conditions and supporting information applicable for this service or product.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_informationSequence": {
+          "description": "Extensions for informationSequence",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "revenue": {
+          "description": "The type of revenue or cost center providing the product and/or service.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "category": {
+          "description": "Code to identify the general type of benefits under which products and services are provided.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "productOrService": {
+          "description": "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "modifier": {
+          "description": "Item typification or modifiers codes to convey additional context for the product or service.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "programCode": {
+          "description": "Identifies the program under which this may be recovered.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "servicedDate": {
+          "description": "The date or dates when the service or product was supplied, performed or completed.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_servicedDate": {
+          "description": "Extensions for servicedDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "servicedPeriod": {
+          "description": "The date or dates when the service or product was supplied, performed or completed.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "locationCodeableConcept": {
+          "description": "Where the product or service was provided.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "locationAddress": {
+          "description": "Where the product or service was provided.",
+          "$ref": "Address.schema.json#/definitions/Address"
+        },
+        "locationReference": {
+          "description": "Where the product or service was provided.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "quantity": {
+          "description": "The number of repetitions of a service or product.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "unitPrice": {
+          "description": "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "factor": {
+          "description": "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+          "$ref": "#/definitions/decimal"
+        },
+        "_factor": {
+          "description": "Extensions for factor",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "net": {
+          "description": "The quantity times the unit price for an additional service or product or charge.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "udi": {
+          "description": "Unique Device Identifiers associated with this line item.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "bodySite": {
+          "description": "Physical service site on the patient (limb, tooth, etc.).",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "subSite": {
+          "description": "A region or surface of the bodySite, e.g. limb region or tooth surface(s).",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "encounter": {
+          "description": "A billed item may include goods or services provided in multiple encounters.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "noteNumber": {
+          "description": "The numbers associated with notes below which apply to the adjudication of this item.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_noteNumber": {
+          "description": "Extensions for noteNumber",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "adjudication": {
+          "description": "If this item is a group then the values here are a summary of the adjudication of the detail items. If this item is a simple product or service then this is the result of the adjudication of this item.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Adjudication"
+          },
+          "type": "array"
+        },
+        "detail": {
+          "description": "Second-tier of goods and services.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Detail"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "productOrService"
+      ]
+    },
+    "ExplanationOfBenefit_Adjudication": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "category": {
+          "description": "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in-aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "reason": {
+          "description": "A code supporting the understanding of the adjudication result and explaining variance from expected amount.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "amount": {
+          "description": "Monetary amount associated with the category.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "value": {
+          "description": "A non-monetary value associated with the category. Mutually exclusive to the amount element above.",
+          "$ref": "#/definitions/decimal"
+        },
+        "_value": {
+          "description": "Extensions for value",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "category"
+      ]
+    },
+    "ExplanationOfBenefit_Detail": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "A claim detail line. Either a simple (a product or service) or a \u0027group\u0027 of sub-details which are simple items.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "revenue": {
+          "description": "The type of revenue or cost center providing the product and/or service.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "category": {
+          "description": "Code to identify the general type of benefits under which products and services are provided.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "productOrService": {
+          "description": "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "modifier": {
+          "description": "Item typification or modifiers codes to convey additional context for the product or service.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "programCode": {
+          "description": "Identifies the program under which this may be recovered.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "quantity": {
+          "description": "The number of repetitions of a service or product.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "unitPrice": {
+          "description": "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "factor": {
+          "description": "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+          "$ref": "#/definitions/decimal"
+        },
+        "_factor": {
+          "description": "Extensions for factor",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "net": {
+          "description": "The quantity times the unit price for an additional service or product or charge.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "udi": {
+          "description": "Unique Device Identifiers associated with this line item.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "noteNumber": {
+          "description": "The numbers associated with notes below which apply to the adjudication of this item.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_noteNumber": {
+          "description": "Extensions for noteNumber",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "adjudication": {
+          "description": "The adjudication results.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Adjudication"
+          },
+          "type": "array"
+        },
+        "subDetail": {
+          "description": "Third-tier of goods and services.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_SubDetail"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "productOrService"
+      ]
+    },
+    "ExplanationOfBenefit_SubDetail": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "A claim detail line. Either a simple (a product or service) or a \u0027group\u0027 of sub-details which are simple items.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "revenue": {
+          "description": "The type of revenue or cost center providing the product and/or service.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "category": {
+          "description": "Code to identify the general type of benefits under which products and services are provided.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "productOrService": {
+          "description": "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "modifier": {
+          "description": "Item typification or modifiers codes to convey additional context for the product or service.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "programCode": {
+          "description": "Identifies the program under which this may be recovered.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "quantity": {
+          "description": "The number of repetitions of a service or product.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "unitPrice": {
+          "description": "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "factor": {
+          "description": "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+          "$ref": "#/definitions/decimal"
+        },
+        "_factor": {
+          "description": "Extensions for factor",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "net": {
+          "description": "The quantity times the unit price for an additional service or product or charge.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "udi": {
+          "description": "Unique Device Identifiers associated with this line item.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "noteNumber": {
+          "description": "The numbers associated with notes below which apply to the adjudication of this item.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_noteNumber": {
+          "description": "Extensions for noteNumber",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "adjudication": {
+          "description": "The adjudication results.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Adjudication"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "productOrService"
+      ]
+    },
+    "ExplanationOfBenefit_AddItem": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "itemSequence": {
+          "description": "Claim items which this service line is intended to replace.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_itemSequence": {
+          "description": "Extensions for itemSequence",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "detailSequence": {
+          "description": "The sequence number of the details within the claim item which this line is intended to replace.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_detailSequence": {
+          "description": "Extensions for detailSequence",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "subDetailSequence": {
+          "description": "The sequence number of the sub-details woithin the details within the claim item which this line is intended to replace.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_subDetailSequence": {
+          "description": "Extensions for subDetailSequence",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "provider": {
+          "description": "The providers who are authorized for the services rendered to the patient.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "productOrService": {
+          "description": "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "modifier": {
+          "description": "Item typification or modifiers codes to convey additional context for the product or service.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "programCode": {
+          "description": "Identifies the program under which this may be recovered.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "servicedDate": {
+          "description": "The date or dates when the service or product was supplied, performed or completed.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_servicedDate": {
+          "description": "Extensions for servicedDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "servicedPeriod": {
+          "description": "The date or dates when the service or product was supplied, performed or completed.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "locationCodeableConcept": {
+          "description": "Where the product or service was provided.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "locationAddress": {
+          "description": "Where the product or service was provided.",
+          "$ref": "Address.schema.json#/definitions/Address"
+        },
+        "locationReference": {
+          "description": "Where the product or service was provided.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "quantity": {
+          "description": "The number of repetitions of a service or product.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "unitPrice": {
+          "description": "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "factor": {
+          "description": "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+          "$ref": "#/definitions/decimal"
+        },
+        "_factor": {
+          "description": "Extensions for factor",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "net": {
+          "description": "The quantity times the unit price for an additional service or product or charge.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "bodySite": {
+          "description": "Physical service site on the patient (limb, tooth, etc.).",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "subSite": {
+          "description": "A region or surface of the bodySite, e.g. limb region or tooth surface(s).",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "noteNumber": {
+          "description": "The numbers associated with notes below which apply to the adjudication of this item.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_noteNumber": {
+          "description": "Extensions for noteNumber",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "adjudication": {
+          "description": "The adjudication results.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Adjudication"
+          },
+          "type": "array"
+        },
+        "detail": {
+          "description": "The second-tier service adjudications for payor added services.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Detail1"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "productOrService"
+      ]
+    },
+    "ExplanationOfBenefit_Detail1": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "productOrService": {
+          "description": "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "modifier": {
+          "description": "Item typification or modifiers codes to convey additional context for the product or service.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "quantity": {
+          "description": "The number of repetitions of a service or product.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "unitPrice": {
+          "description": "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "factor": {
+          "description": "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+          "$ref": "#/definitions/decimal"
+        },
+        "_factor": {
+          "description": "Extensions for factor",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "net": {
+          "description": "The quantity times the unit price for an additional service or product or charge.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "noteNumber": {
+          "description": "The numbers associated with notes below which apply to the adjudication of this item.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_noteNumber": {
+          "description": "Extensions for noteNumber",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "adjudication": {
+          "description": "The adjudication results.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Adjudication"
+          },
+          "type": "array"
+        },
+        "subDetail": {
+          "description": "The third-tier service adjudications for payor added services.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_SubDetail1"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "productOrService"
+      ]
+    },
+    "ExplanationOfBenefit_SubDetail1": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "productOrService": {
+          "description": "When the value is a group code then this item collects a set of related claim details, otherwise this contains the product, service, drug or other billing code for the item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "modifier": {
+          "description": "Item typification or modifiers codes to convey additional context for the product or service.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "quantity": {
+          "description": "The number of repetitions of a service or product.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "unitPrice": {
+          "description": "If the item is not a group then this is the fee for the product or service, otherwise this is the total of the fees for the details of the group.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "factor": {
+          "description": "A real number that represents a multiplier used in determining the overall value of services delivered and/or goods received. The concept of a Factor allows for a discount or surcharge multiplier to be applied to a monetary amount.",
+          "$ref": "#/definitions/decimal"
+        },
+        "_factor": {
+          "description": "Extensions for factor",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "net": {
+          "description": "The quantity times the unit price for an additional service or product or charge.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "noteNumber": {
+          "description": "The numbers associated with notes below which apply to the adjudication of this item.",
+          "items": {
+            "$ref": "#/definitions/positiveInt"
+          },
+          "type": "array"
+        },
+        "_noteNumber": {
+          "description": "Extensions for noteNumber",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "adjudication": {
+          "description": "The adjudication results.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Adjudication"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "productOrService"
+      ]
+    },
+    "ExplanationOfBenefit_Total": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "category": {
+          "description": "A code to indicate the information type of this adjudication record. Information types may include: the value submitted, maximum values or percentages allowed or payable under the plan, amounts that the patient is responsible for in aggregate or pertaining to this item, amounts paid by other coverages, and the benefit payable for this item.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "amount": {
+          "description": "Monetary total amount associated with the category.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "category"
+      ]
+    },
+    "ExplanationOfBenefit_Payment": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Whether this represents partial or complete payment of the benefits payable.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "adjustment": {
+          "description": "Total amount of all adjustments to this payment included in this transaction which are not related to this claim\u0027s adjudication.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "adjustmentReason": {
+          "description": "Reason for the payment adjustment.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "date": {
+          "description": "Estimated date the payment will be issued or the actual issue date of payment.",
+          "$ref": "#/definitions/date"
+        },
+        "_date": {
+          "description": "Extensions for date",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "amount": {
+          "description": "Benefits payable less any payment adjustment.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "identifier": {
+          "description": "Issuer\u0027s unique identifier for the payment instrument.",
+          "$ref": "Identifier.schema.json#/definitions/Identifier"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExplanationOfBenefit_ProcessNote": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "number": {
+          "description": "A number to uniquely identify a note entry.",
+          "$ref": "#/definitions/positiveInt"
+        },
+        "_number": {
+          "description": "Extensions for number",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "type": {
+          "description": "The business purpose of the note text.",
+          "enum": [
+            "display",
+            "print",
+            "printoper"
+          ]
+        },
+        "_type": {
+          "description": "Extensions for type",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "text": {
+          "description": "The explanation or description associated with the processing.",
+          "$ref": "#/definitions/string"
+        },
+        "_text": {
+          "description": "Extensions for text",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "language": {
+          "description": "A code to define the language used in the text of the note.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ExplanationOfBenefit_BenefitBalance": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "category": {
+          "description": "Code to identify the general type of benefits under which products and services are provided.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "excluded": {
+          "description": "True if the indicated class of service is excluded from the plan, missing or False indicates the product or service is included in the coverage.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_excluded": {
+          "description": "Extensions for excluded",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "name": {
+          "description": "A short name or tag for the benefit.",
+          "$ref": "#/definitions/string"
+        },
+        "_name": {
+          "description": "Extensions for name",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "description": {
+          "description": "A richer description of the benefit or services covered.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "network": {
+          "description": "Is a flag to indicate whether the benefits refer to in-network providers or out-of-network providers.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "unit": {
+          "description": "Indicates if the benefits apply to an individual or to the family.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "term": {
+          "description": "The term or period of the values such as \u0027maximum lifetime benefit\u0027 or \u0027maximum annual visits\u0027.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "financial": {
+          "description": "Benefits Used to date.",
+          "items": {
+            "$ref": "#/definitions/ExplanationOfBenefit_Financial"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "category"
+      ]
+    },
+    "ExplanationOfBenefit_Financial": {
+      "description": "This resource provides: the claim details; adjudication details from the processing of a Claim; and optionally account balance information, for informing the subscriber of the benefits provided.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Classification of benefit being provided.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "allowedUnsignedInt": {
+          "description": "The quantity of the benefit which is permitted under the coverage.",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_allowedUnsignedInt": {
+          "description": "Extensions for allowedUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "allowedString": {
+          "description": "The quantity of the benefit which is permitted under the coverage.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_allowedString": {
+          "description": "Extensions for allowedString",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "allowedMoney": {
+          "description": "The quantity of the benefit which is permitted under the coverage.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "usedUnsignedInt": {
+          "description": "The quantity of the benefit which have been consumed to date.",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_usedUnsignedInt": {
+          "description": "Extensions for usedUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "usedMoney": {
+          "description": "The quantity of the benefit which have been consumed to date.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type"
+      ]
+    }
+  }
+}

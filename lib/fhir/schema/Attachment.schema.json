@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/Attachment",
+  "$ref": "#/definitions/Attachment",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "Attachment": {
+      "description": "For referring to data content defined in other formats.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "contentType": {
+          "description": "Identifies the type of the data in the attachment and allows a method to be chosen to interpret or render the data. Includes mime type parameters such as charset where appropriate.",
+          "$ref": "#/definitions/code"
+        },
+        "_contentType": {
+          "description": "Extensions for contentType",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "language": {
+          "description": "The human language of the content. The value can be any valid value according to BCP 47.",
+          "$ref": "#/definitions/code"
+        },
+        "_language": {
+          "description": "Extensions for language",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "data": {
+          "description": "The actual data of the attachment - a sequence of bytes, base64 encoded.",
+          "$ref": "#/definitions/base64Binary"
+        },
+        "_data": {
+          "description": "Extensions for data",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "url": {
+          "description": "A location where the data can be accessed.",
+          "$ref": "#/definitions/url"
+        },
+        "_url": {
+          "description": "Extensions for url",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "size": {
+          "description": "The number of bytes of data that make up this attachment (before base64 encoding, if that is done).",
+          "$ref": "#/definitions/unsignedInt"
+        },
+        "_size": {
+          "description": "Extensions for size",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "hash": {
+          "description": "The calculated hash of the data using SHA-1. Represented using base64.",
+          "$ref": "#/definitions/base64Binary"
+        },
+        "_hash": {
+          "description": "Extensions for hash",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "title": {
+          "description": "A label or set of text to display in place of the data.",
+          "$ref": "#/definitions/string"
+        },
+        "_title": {
+          "description": "Extensions for title",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "creation": {
+          "description": "The date that the attachment was first created.",
+          "$ref": "#/definitions/dateTime"
+        },
+        "_creation": {
+          "description": "Extensions for creation",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

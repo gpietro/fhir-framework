@@ -1,1 +1,1243 @@
-{"$schema":"http://json-schema.org/draft-04/schema#","id":"http://hl7.org/fhir/json-schema/ImplementationGuide","$ref":"#/definitions/ImplementationGuide","description":"see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas","definitions":{"ImplementationGuide":{"description":"A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.","properties":{"resourceType":{"description":"This is a ImplementationGuide resource","type":"string","enum":["ImplementationGuide"]},"url":{"description":"An absolute URI that is used to identify this implementation guide when it is referenced in a specification, model, design or an instance. This SHALL be a URL, SHOULD be globally unique, and SHOULD be an address at which this implementation guide is (or will be) published. The URL SHOULD include the major version of the implementation guide. For more information see [Technical and Business Versions](resource.html#versions).","type":"string"},"version":{"description":"The identifier that is used to identify this version of the implementation guide when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the implementation guide author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.","type":"string"},"name":{"description":"A natural language name identifying the implementation guide. This name should be usable as an identifier for the module by machine processing applications such as code generation.","type":"string"},"status":{"description":"The status of this implementation guide. Enables tracking the life-cycle of the content.","enum":["draft","active","retired","unknown"],"type":"string"},"experimental":{"description":"A boolean value to indicate that this implementation guide is authored for testing purposes (or education/evaluation/marketing), and is not intended to be used for genuine usage.","type":"boolean"},"date":{"description":"The date  (and optionally time) when the implementation guide was published. The date must change if and when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the implementation guide changes.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"publisher":{"description":"The name of the individual or organization that published the implementation guide.","type":"string"},"contact":{"description":"Contact details to assist a user in finding and communicating with the publisher.","type":"array","items":{"$ref":"#/definitions/ContactDetail","type":"object"}},"description":{"description":"A free text natural language description of the implementation guide from a consumer's perspective.","type":"string"},"useContext":{"description":"The content was developed with a focus and intent of supporting the contexts that are listed. These terms may be used to assist with indexing and searching for appropriate implementation guide instances.","type":"array","items":{"$ref":"#/definitions/UsageContext","type":"object"}},"jurisdiction":{"description":"A legal or geographic region in which the implementation guide is intended to be used.","type":"array","items":{"$ref":"#/definitions/CodeableConcept","type":"object"}},"copyright":{"description":"A copyright statement relating to the implementation guide and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the implementation guide.","type":"string"},"fhirVersion":{"description":"The version of the FHIR specification on which this ImplementationGuide is based - this is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 3.0.1 for this version.","type":"string","pattern":"[A-Za-z0-9\\-\\.]{1,64}"},"dependency":{"description":"Another implementation guide that this implementation depends on. Typically, an implementation guide uses value sets, profiles etc.defined in other implementation guides.","type":"array","items":{"$ref":"#/definitions/ImplementationGuide_Dependency"}},"package":{"description":"A logical group of resources. Logical groups can be used when building pages.","type":"array","items":{"$ref":"#/definitions/ImplementationGuide_Package"}},"global":{"description":"A set of profiles that all resources covered by this implementation guide must conform to.","type":"array","items":{"$ref":"#/definitions/ImplementationGuide_Global"}},"binary":{"description":"A binary file that is included in the  implementation guide when it is published.","type":"array","items":{"type":"string"}},"page":{"description":"A page / section in the implementation guide. The root page is the implementation guide home page.","$ref":"#/definitions/ImplementationGuide_Page"}},"required":["resourceType"]},"ImplementationGuide_Dependency":{"description":"A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.","properties":{"type":{"description":"How the dependency is represented when the guide is published.","enum":["reference","inclusion"],"type":"string"},"uri":{"description":"Where the dependency is located.","type":"string"}}},"ImplementationGuide_Package":{"description":"A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.","properties":{"name":{"description":"The name for the group, as used in page.package.","type":"string"},"description":{"description":"Human readable text describing the package.","type":"string"},"resource":{"description":"A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource.","type":"array","items":{"$ref":"#/definitions/ImplementationGuide_Resource"}}},"required":["resource"]},"ImplementationGuide_Resource":{"description":"A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.","properties":{"example":{"description":"Whether a resource is included in the guide as part of the rules defined by the guide, or just as an example of a resource that conforms to the rules and/or help implementers understand the intent of the guide.","type":"boolean"},"name":{"description":"A human assigned name for the resource. All resources SHOULD have a name, but the name may be extracted from the resource (e.g. ValueSet.name).","type":"string"},"description":{"description":"A description of the reason that a resource has been included in the implementation guide.","type":"string"},"acronym":{"description":"A short code that may be used to identify the resource throughout the implementation guide.","type":"string"},"sourceUri":{"description":"Where this resource is found.","type":"string"},"sourceReference":{"description":"Where this resource is found.","$ref":"#/definitions/Reference","type":"object"},"exampleFor":{"description":"Another resource that this resource is an example for. This is mostly used for resources that are included as examples of StructureDefinitions.","$ref":"#/definitions/Reference","type":"object"}}},"ImplementationGuide_Global":{"description":"A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.","properties":{"type":{"description":"The type of resource that all instances must conform to.","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"},"profile":{"description":"A reference to the profile that all instances must conform to.","$ref":"#/definitions/Reference","type":"object"}},"required":["profile"]},"ImplementationGuide_Page":{"description":"A set of rules of how FHIR is used to solve a particular problem. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.","properties":{"source":{"description":"The source address for the page.","type":"string"},"title":{"description":"A short title used to represent this page in navigational structures such as table of contents, bread crumbs, etc.","type":"string"},"kind":{"description":"The kind of page that this is. Some pages are autogenerated (list, example), and other kinds are of interest so that tools can navigate the user to the page of interest.","enum":["page","example","list","include","directory","dictionary","toc","resource"],"type":"string"},"type":{"description":"For constructed pages, what kind of resources to include in the list.","type":"array","items":{"type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"}},"package":{"description":"For constructed pages, a list of packages to include in the page (or else empty for everything).","type":"array","items":{"type":"string"}},"format":{"description":"The format of the page.","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"},"page":{"description":"Nested Pages/Sections under this page.","type":"array","items":{"$ref":"#/definitions/ImplementationGuide_Page"}}}},"ContactDetail":{"description":"Specifies contact information for a person or organization.","properties":{"name":{"description":"The name of an individual to contact.","type":"string"},"telecom":{"description":"The contact details for the individual (if a name was provided) or the organization.","type":"array","items":{"$ref":"#/definitions/ContactPoint","type":"object"}}}},"UsageContext":{"description":"Specifies clinical/business/etc metadata that can be used to retrieve, index and/or categorize an artifact. This metadata can either be specific to the applicable population (e.g., age category, DRG) or the specific context of care (e.g., venue, care setting, provider of care).","properties":{"code":{"description":"A code that identifies the type of context being specified by this usage context.","$ref":"#/definitions/Coding","type":"object"},"valueCodeableConcept":{"description":"A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.","$ref":"#/definitions/CodeableConcept","type":"object"},"valueQuantity":{"description":"A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.","$ref":"#/definitions/Quantity","type":"object"},"valueRange":{"description":"A value that defines the context specified in this context of use. The interpretation of the value is defined by the code.","$ref":"#/definitions/Range","type":"object"}},"required":["code"]},"CodeableConcept":{"description":"A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.","properties":{"coding":{"description":"A reference to a code defined by a terminology system.","type":"array","items":{"$ref":"#/definitions/Coding","type":"object"}},"text":{"description":"A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.","type":"string"}}},"Reference":{"description":"A reference from one resource to another.","properties":{"reference":{"description":"A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources.","type":"string"},"identifier":{"description":"An identifier for the other resource. This is used when there is no way to reference the other resource directly, either because the entity is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference.","$ref":"#/definitions/Identifier","type":"object"},"display":{"description":"Plain text narrative that identifies the resource in addition to the resource reference.","type":"string"}}},"ContactPoint":{"description":"Details for all kinds of technology mediated contact points for a person or organization, including telephone, email, etc.","properties":{"system":{"description":"Telecommunications form for contact point - what communications system is required to make use of the contact.","enum":["phone","fax","email","pager","url","sms","other"],"type":"string"},"value":{"description":"The actual contact point details, in a form that is meaningful to the designated communication system (i.e. phone number or email address).","type":"string"},"use":{"description":"Identifies the purpose for the contact point.","enum":["home","work","temp","old","mobile"],"type":"string"},"rank":{"description":"Specifies a preferred order in which to use a set of contacts. Contacts are ranked with lower values coming before higher values.","type":"number","pattern":"[1-9][0-9]*"},"period":{"description":"Time period when the contact point was/is in use.","$ref":"#/definitions/Period","type":"object"}}},"Coding":{"description":"A reference to a code defined by a terminology system.","properties":{"system":{"description":"The identification of the code system that defines the meaning of the symbol in the code.","type":"string"},"version":{"description":"The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged.","type":"string"},"code":{"description":"A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"},"display":{"description":"A representation of the meaning of the code in the system, following the rules of the system.","type":"string"},"userSelected":{"description":"Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays).","type":"boolean"}}},"Quantity":{"description":"A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating currencies.","properties":{"value":{"description":"The value of the measured amount. The value includes an implicit precision in the presentation of the value.","type":"number","pattern":"-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"},"comparator":{"description":"How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.","enum":["<","<=",">=",">"],"type":"string"},"unit":{"description":"A human-readable form of the unit.","type":"string"},"system":{"description":"The identification of the system that provides the coded form of the unit.","type":"string"},"code":{"description":"A computer processable form of the unit in some unit representation system.","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"}}},"Range":{"description":"A set of ordered Quantities defined by a low and high limit.","properties":{"low":{"description":"The low limit. The boundary is inclusive.","$ref":"#/definitions/Quantity","type":"object"},"high":{"description":"The high limit. The boundary is inclusive.","$ref":"#/definitions/Quantity","type":"object"}}},"Identifier":{"description":"A technical identifier - identifies some entity uniquely and unambiguously.","properties":{"use":{"description":"The purpose of this identifier.","enum":["usual","official","temp","secondary"],"type":"string"},"type":{"description":"A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.","$ref":"#/definitions/CodeableConcept","type":"object"},"system":{"description":"Establishes the namespace for the value - that is, a URL that describes a set values that are unique.","type":"string"},"value":{"description":"The portion of the identifier typically relevant to the user and which is unique within the context of the system.","type":"string"},"period":{"description":"Time period during which identifier is/was valid for use.","$ref":"#/definitions/Period","type":"object"},"assigner":{"description":"Organization that issued/manages the identifier.","$ref":"#/definitions/Reference","type":"object"}}},"Period":{"description":"A time period defined by a start and end date and optionally time.","properties":{"start":{"description":"The start of the period. The boundary is inclusive.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"end":{"description":"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"}}}},"type":"object"}
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/ImplementationGuide",
+  "$ref": "#/definitions/ImplementationGuide",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "ImplementationGuide": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "resourceType": {
+          "description": "This is a ImplementationGuide resource",
+          "const": "ImplementationGuide"
+        },
+        "id": {
+          "description": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+          "$ref": "id.schema.json#/definitions/id"
+        },
+        "meta": {
+          "description": "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+          "$ref": "Meta.schema.json#/definitions/Meta"
+        },
+        "implicitRules": {
+          "description": "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+          "$ref": "#/definitions/uri"
+        },
+        "_implicitRules": {
+          "description": "Extensions for implicitRules",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "language": {
+          "description": "The base language in which the resource is written.",
+          "$ref": "#/definitions/code"
+        },
+        "_language": {
+          "description": "Extensions for language",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "text": {
+          "description": "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+          "$ref": "Narrative.schema.json#/definitions/Narrative"
+        },
+        "contained": {
+          "description": "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.",
+          "items": {
+            "$ref": "ResourceList.schema.json#/definitions/ResourceList"
+          },
+          "type": "array"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "An absolute URI that is used to identify this implementation guide when it is referenced in a specification, model, design or an instance; also called its canonical identifier. This SHOULD be globally unique and SHOULD be a literal address at which at which an authoritative instance of this implementation guide is (or will be) published. This URL can be the target of a canonical reference. It SHALL remain the same when the implementation guide is stored on different servers.",
+          "$ref": "#/definitions/uri"
+        },
+        "_url": {
+          "description": "Extensions for url",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "version": {
+          "description": "The identifier that is used to identify this version of the implementation guide when it is referenced in a specification, model, design or instance. This is an arbitrary value managed by the implementation guide author and is not expected to be globally unique. For example, it might be a timestamp (e.g. yyyymmdd) if a managed version is not available. There is also no expectation that versions can be placed in a lexicographical sequence.",
+          "$ref": "#/definitions/string"
+        },
+        "_version": {
+          "description": "Extensions for version",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "name": {
+          "description": "A natural language name identifying the implementation guide. This name should be usable as an identifier for the module by machine processing applications such as code generation.",
+          "$ref": "#/definitions/string"
+        },
+        "_name": {
+          "description": "Extensions for name",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "title": {
+          "description": "A short, descriptive, user-friendly title for the implementation guide.",
+          "$ref": "#/definitions/string"
+        },
+        "_title": {
+          "description": "Extensions for title",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "status": {
+          "description": "The status of this implementation guide. Enables tracking the life-cycle of the content.",
+          "enum": [
+            "draft",
+            "active",
+            "retired",
+            "unknown"
+          ]
+        },
+        "_status": {
+          "description": "Extensions for status",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "experimental": {
+          "description": "A Boolean value to indicate that this implementation guide is authored for testing purposes (or education/evaluation/marketing) and is not intended to be used for genuine usage.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_experimental": {
+          "description": "Extensions for experimental",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "date": {
+          "description": "The date  (and optionally time) when the implementation guide was published. The date must change when the business version changes and it must change if the status code changes. In addition, it should change when the substantive content of the implementation guide changes.",
+          "$ref": "#/definitions/dateTime"
+        },
+        "_date": {
+          "description": "Extensions for date",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "publisher": {
+          "description": "The name of the organization or individual that published the implementation guide.",
+          "$ref": "#/definitions/string"
+        },
+        "_publisher": {
+          "description": "Extensions for publisher",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "contact": {
+          "description": "Contact details to assist a user in finding and communicating with the publisher.",
+          "items": {
+            "$ref": "ContactDetail.schema.json#/definitions/ContactDetail"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "A free text natural language description of the implementation guide from a consumer\u0027s perspective.",
+          "$ref": "#/definitions/markdown"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "useContext": {
+          "description": "The content was developed with a focus and intent of supporting the contexts that are listed. These contexts may be general categories (gender, age, ...) or may be references to specific programs (insurance plans, studies, ...) and may be used to assist with indexing and searching for appropriate implementation guide instances.",
+          "items": {
+            "$ref": "UsageContext.schema.json#/definitions/UsageContext"
+          },
+          "type": "array"
+        },
+        "jurisdiction": {
+          "description": "A legal or geographic region in which the implementation guide is intended to be used.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "copyright": {
+          "description": "A copyright statement relating to the implementation guide and/or its contents. Copyright statements are generally legal restrictions on the use and publishing of the implementation guide.",
+          "$ref": "#/definitions/markdown"
+        },
+        "_copyright": {
+          "description": "Extensions for copyright",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "packageId": {
+          "description": "The NPM package name for this Implementation Guide, used in the NPM package distribution, which is the primary mechanism by which FHIR based tooling manages IG dependencies. This value must be globally unique, and should be assigned with care.",
+          "$ref": "#/definitions/id"
+        },
+        "_packageId": {
+          "description": "Extensions for packageId",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "license": {
+          "description": "The license that applies to this Implementation Guide, using an SPDX license code, or \u0027not-open-source\u0027.",
+          "enum": [
+            "not-open-source",
+            "0BSD",
+            "AAL",
+            "Abstyles",
+            "Adobe-2006",
+            "Adobe-Glyph",
+            "ADSL",
+            "AFL-1.1",
+            "AFL-1.2",
+            "AFL-2.0",
+            "AFL-2.1",
+            "AFL-3.0",
+            "Afmparse",
+            "AGPL-1.0-only",
+            "AGPL-1.0-or-later",
+            "AGPL-3.0-only",
+            "AGPL-3.0-or-later",
+            "Aladdin",
+            "AMDPLPA",
+            "AML",
+            "AMPAS",
+            "ANTLR-PD",
+            "Apache-1.0",
+            "Apache-1.1",
+            "Apache-2.0",
+            "APAFML",
+            "APL-1.0",
+            "APSL-1.0",
+            "APSL-1.1",
+            "APSL-1.2",
+            "APSL-2.0",
+            "Artistic-1.0-cl8",
+            "Artistic-1.0-Perl",
+            "Artistic-1.0",
+            "Artistic-2.0",
+            "Bahyph",
+            "Barr",
+            "Beerware",
+            "BitTorrent-1.0",
+            "BitTorrent-1.1",
+            "Borceux",
+            "BSD-1-Clause",
+            "BSD-2-Clause-FreeBSD",
+            "BSD-2-Clause-NetBSD",
+            "BSD-2-Clause-Patent",
+            "BSD-2-Clause",
+            "BSD-3-Clause-Attribution",
+            "BSD-3-Clause-Clear",
+            "BSD-3-Clause-LBNL",
+            "BSD-3-Clause-No-Nuclear-License-2014",
+            "BSD-3-Clause-No-Nuclear-License",
+            "BSD-3-Clause-No-Nuclear-Warranty",
+            "BSD-3-Clause",
+            "BSD-4-Clause-UC",
+            "BSD-4-Clause",
+            "BSD-Protection",
+            "BSD-Source-Code",
+            "BSL-1.0",
+            "bzip2-1.0.5",
+            "bzip2-1.0.6",
+            "Caldera",
+            "CATOSL-1.1",
+            "CC-BY-1.0",
+            "CC-BY-2.0",
+            "CC-BY-2.5",
+            "CC-BY-3.0",
+            "CC-BY-4.0",
+            "CC-BY-NC-1.0",
+            "CC-BY-NC-2.0",
+            "CC-BY-NC-2.5",
+            "CC-BY-NC-3.0",
+            "CC-BY-NC-4.0",
+            "CC-BY-NC-ND-1.0",
+            "CC-BY-NC-ND-2.0",
+            "CC-BY-NC-ND-2.5",
+            "CC-BY-NC-ND-3.0",
+            "CC-BY-NC-ND-4.0",
+            "CC-BY-NC-SA-1.0",
+            "CC-BY-NC-SA-2.0",
+            "CC-BY-NC-SA-2.5",
+            "CC-BY-NC-SA-3.0",
+            "CC-BY-NC-SA-4.0",
+            "CC-BY-ND-1.0",
+            "CC-BY-ND-2.0",
+            "CC-BY-ND-2.5",
+            "CC-BY-ND-3.0",
+            "CC-BY-ND-4.0",
+            "CC-BY-SA-1.0",
+            "CC-BY-SA-2.0",
+            "CC-BY-SA-2.5",
+            "CC-BY-SA-3.0",
+            "CC-BY-SA-4.0",
+            "CC0-1.0",
+            "CDDL-1.0",
+            "CDDL-1.1",
+            "CDLA-Permissive-1.0",
+            "CDLA-Sharing-1.0",
+            "CECILL-1.0",
+            "CECILL-1.1",
+            "CECILL-2.0",
+            "CECILL-2.1",
+            "CECILL-B",
+            "CECILL-C",
+            "ClArtistic",
+            "CNRI-Jython",
+            "CNRI-Python-GPL-Compatible",
+            "CNRI-Python",
+            "Condor-1.1",
+            "CPAL-1.0",
+            "CPL-1.0",
+            "CPOL-1.02",
+            "Crossword",
+            "CrystalStacker",
+            "CUA-OPL-1.0",
+            "Cube",
+            "curl",
+            "D-FSL-1.0",
+            "diffmark",
+            "DOC",
+            "Dotseqn",
+            "DSDP",
+            "dvipdfm",
+            "ECL-1.0",
+            "ECL-2.0",
+            "EFL-1.0",
+            "EFL-2.0",
+            "eGenix",
+            "Entessa",
+            "EPL-1.0",
+            "EPL-2.0",
+            "ErlPL-1.1",
+            "EUDatagrid",
+            "EUPL-1.0",
+            "EUPL-1.1",
+            "EUPL-1.2",
+            "Eurosym",
+            "Fair",
+            "Frameworx-1.0",
+            "FreeImage",
+            "FSFAP",
+            "FSFUL",
+            "FSFULLR",
+            "FTL",
+            "GFDL-1.1-only",
+            "GFDL-1.1-or-later",
+            "GFDL-1.2-only",
+            "GFDL-1.2-or-later",
+            "GFDL-1.3-only",
+            "GFDL-1.3-or-later",
+            "Giftware",
+            "GL2PS",
+            "Glide",
+            "Glulxe",
+            "gnuplot",
+            "GPL-1.0-only",
+            "GPL-1.0-or-later",
+            "GPL-2.0-only",
+            "GPL-2.0-or-later",
+            "GPL-3.0-only",
+            "GPL-3.0-or-later",
+            "gSOAP-1.3b",
+            "HaskellReport",
+            "HPND",
+            "IBM-pibs",
+            "ICU",
+            "IJG",
+            "ImageMagick",
+            "iMatix",
+            "Imlib2",
+            "Info-ZIP",
+            "Intel-ACPI",
+            "Intel",
+            "Interbase-1.0",
+            "IPA",
+            "IPL-1.0",
+            "ISC",
+            "JasPer-2.0",
+            "JSON",
+            "LAL-1.2",
+            "LAL-1.3",
+            "Latex2e",
+            "Leptonica",
+            "LGPL-2.0-only",
+            "LGPL-2.0-or-later",
+            "LGPL-2.1-only",
+            "LGPL-2.1-or-later",
+            "LGPL-3.0-only",
+            "LGPL-3.0-or-later",
+            "LGPLLR",
+            "Libpng",
+            "libtiff",
+            "LiLiQ-P-1.1",
+            "LiLiQ-R-1.1",
+            "LiLiQ-Rplus-1.1",
+            "Linux-OpenIB",
+            "LPL-1.0",
+            "LPL-1.02",
+            "LPPL-1.0",
+            "LPPL-1.1",
+            "LPPL-1.2",
+            "LPPL-1.3a",
+            "LPPL-1.3c",
+            "MakeIndex",
+            "MirOS",
+            "MIT-0",
+            "MIT-advertising",
+            "MIT-CMU",
+            "MIT-enna",
+            "MIT-feh",
+            "MIT",
+            "MITNFA",
+            "Motosoto",
+            "mpich2",
+            "MPL-1.0",
+            "MPL-1.1",
+            "MPL-2.0-no-copyleft-exception",
+            "MPL-2.0",
+            "MS-PL",
+            "MS-RL",
+            "MTLL",
+            "Multics",
+            "Mup",
+            "NASA-1.3",
+            "Naumen",
+            "NBPL-1.0",
+            "NCSA",
+            "Net-SNMP",
+            "NetCDF",
+            "Newsletr",
+            "NGPL",
+            "NLOD-1.0",
+            "NLPL",
+            "Nokia",
+            "NOSL",
+            "Noweb",
+            "NPL-1.0",
+            "NPL-1.1",
+            "NPOSL-3.0",
+            "NRL",
+            "NTP",
+            "OCCT-PL",
+            "OCLC-2.0",
+            "ODbL-1.0",
+            "OFL-1.0",
+            "OFL-1.1",
+            "OGTSL",
+            "OLDAP-1.1",
+            "OLDAP-1.2",
+            "OLDAP-1.3",
+            "OLDAP-1.4",
+            "OLDAP-2.0.1",
+            "OLDAP-2.0",
+            "OLDAP-2.1",
+            "OLDAP-2.2.1",
+            "OLDAP-2.2.2",
+            "OLDAP-2.2",
+            "OLDAP-2.3",
+            "OLDAP-2.4",
+            "OLDAP-2.5",
+            "OLDAP-2.6",
+            "OLDAP-2.7",
+            "OLDAP-2.8",
+            "OML",
+            "OpenSSL",
+            "OPL-1.0",
+            "OSET-PL-2.1",
+            "OSL-1.0",
+            "OSL-1.1",
+            "OSL-2.0",
+            "OSL-2.1",
+            "OSL-3.0",
+            "PDDL-1.0",
+            "PHP-3.0",
+            "PHP-3.01",
+            "Plexus",
+            "PostgreSQL",
+            "psfrag",
+            "psutils",
+            "Python-2.0",
+            "Qhull",
+            "QPL-1.0",
+            "Rdisc",
+            "RHeCos-1.1",
+            "RPL-1.1",
+            "RPL-1.5",
+            "RPSL-1.0",
+            "RSA-MD",
+            "RSCPL",
+            "Ruby",
+            "SAX-PD",
+            "Saxpath",
+            "SCEA",
+            "Sendmail",
+            "SGI-B-1.0",
+            "SGI-B-1.1",
+            "SGI-B-2.0",
+            "SimPL-2.0",
+            "SISSL-1.2",
+            "SISSL",
+            "Sleepycat",
+            "SMLNJ",
+            "SMPPL",
+            "SNIA",
+            "Spencer-86",
+            "Spencer-94",
+            "Spencer-99",
+            "SPL-1.0",
+            "SugarCRM-1.1.3",
+            "SWL",
+            "TCL",
+            "TCP-wrappers",
+            "TMate",
+            "TORQUE-1.1",
+            "TOSL",
+            "Unicode-DFS-2015",
+            "Unicode-DFS-2016",
+            "Unicode-TOU",
+            "Unlicense",
+            "UPL-1.0",
+            "Vim",
+            "VOSTROM",
+            "VSL-1.0",
+            "W3C-19980720",
+            "W3C-20150513",
+            "W3C",
+            "Watcom-1.0",
+            "Wsuipa",
+            "WTFPL",
+            "X11",
+            "Xerox",
+            "XFree86-1.1",
+            "xinetd",
+            "Xnet",
+            "xpp",
+            "XSkat",
+            "YPL-1.0",
+            "YPL-1.1",
+            "Zed",
+            "Zend-2.0",
+            "Zimbra-1.3",
+            "Zimbra-1.4",
+            "zlib-acknowledgement",
+            "Zlib",
+            "ZPL-1.1",
+            "ZPL-2.0",
+            "ZPL-2.1"
+          ]
+        },
+        "_license": {
+          "description": "Extensions for license",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fhirVersion": {
+          "description": "The version(s) of the FHIR specification that this ImplementationGuide targets - e.g. describes how to use. The value of this element is the formal version of the specification, without the revision number, e.g. [publication].[major].[minor], which is 4.0.0. for this version.",
+          "items": {
+            "enum": [
+              "0.01",
+              "0.05",
+              "0.06",
+              "0.11",
+              "0.0.80",
+              "0.0.81",
+              "0.0.82",
+              "0.4.0",
+              "0.5.0",
+              "1.0.0",
+              "1.0.1",
+              "1.0.2",
+              "1.1.0",
+              "1.4.0",
+              "1.6.0",
+              "1.8.0",
+              "3.0.0",
+              "3.0.1",
+              "3.3.0",
+              "3.5.0",
+              "4.0.0"
+            ]
+          },
+          "type": "array"
+        },
+        "_fhirVersion": {
+          "description": "Extensions for fhirVersion",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "dependsOn": {
+          "description": "Another implementation guide that this implementation depends on. Typically, an implementation guide uses value sets, profiles etc.defined in other implementation guides.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_DependsOn"
+          },
+          "type": "array"
+        },
+        "global": {
+          "description": "A set of profiles that all resources covered by this implementation guide must conform to.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Global"
+          },
+          "type": "array"
+        },
+        "definition": {
+          "description": "The information needed by an IG publisher tool to publish the whole implementation guide.",
+          "$ref": "#/definitions/ImplementationGuide_Definition"
+        },
+        "manifest": {
+          "description": "Information about an assembled implementation guide, created by the publication tooling.",
+          "$ref": "#/definitions/ImplementationGuide_Manifest"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "resourceType"
+      ]
+    },
+    "ImplementationGuide_DependsOn": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "description": "A canonical reference to the Implementation guide for the dependency.",
+          "$ref": "canonical.schema.json#/definitions/canonical"
+        },
+        "packageId": {
+          "description": "The NPM package name for the Implementation Guide that this IG depends on.",
+          "$ref": "#/definitions/id"
+        },
+        "_packageId": {
+          "description": "Extensions for packageId",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "version": {
+          "description": "The version of the IG that is depended on, when the correct version is required to understand the IG correctly.",
+          "$ref": "#/definitions/string"
+        },
+        "_version": {
+          "description": "Extensions for version",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "uri"
+      ]
+    },
+    "ImplementationGuide_Global": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "The type of resource that all instances must conform to.",
+          "$ref": "#/definitions/code"
+        },
+        "_type": {
+          "description": "Extensions for type",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "profile": {
+          "description": "A reference to the profile that all instances must conform to.",
+          "$ref": "canonical.schema.json#/definitions/canonical"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "profile"
+      ]
+    },
+    "ImplementationGuide_Definition": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "grouping": {
+          "description": "A logical group of resources. Logical groups can be used when building pages.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Grouping"
+          },
+          "type": "array"
+        },
+        "resource": {
+          "description": "A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Resource"
+          },
+          "type": "array"
+        },
+        "page": {
+          "description": "A page / section in the implementation guide. The root page is the implementation guide home page.",
+          "$ref": "#/definitions/ImplementationGuide_Page"
+        },
+        "parameter": {
+          "description": "Defines how IG is built by tools.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Parameter"
+          },
+          "type": "array"
+        },
+        "template": {
+          "description": "A template for building resources.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Template"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "resource"
+      ]
+    },
+    "ImplementationGuide_Grouping": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The human-readable title to display for the package of resources when rendering the implementation guide.",
+          "$ref": "#/definitions/string"
+        },
+        "_name": {
+          "description": "Extensions for name",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "description": {
+          "description": "Human readable text describing the package.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ImplementationGuide_Resource": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "reference": {
+          "description": "Where this resource is found.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "fhirVersion": {
+          "description": "Indicates the FHIR Version(s) this artifact is intended to apply to. If no versions are specified, the resource is assumed to apply to all the versions stated in ImplementationGuide.fhirVersion.",
+          "items": {
+            "enum": [
+              "0.01",
+              "0.05",
+              "0.06",
+              "0.11",
+              "0.0.80",
+              "0.0.81",
+              "0.0.82",
+              "0.4.0",
+              "0.5.0",
+              "1.0.0",
+              "1.0.1",
+              "1.0.2",
+              "1.1.0",
+              "1.4.0",
+              "1.6.0",
+              "1.8.0",
+              "3.0.0",
+              "3.0.1",
+              "3.3.0",
+              "3.5.0",
+              "4.0.0"
+            ]
+          },
+          "type": "array"
+        },
+        "_fhirVersion": {
+          "description": "Extensions for fhirVersion",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "A human assigned name for the resource. All resources SHOULD have a name, but the name may be extracted from the resource (e.g. ValueSet.name).",
+          "$ref": "#/definitions/string"
+        },
+        "_name": {
+          "description": "Extensions for name",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "description": {
+          "description": "A description of the reason that a resource has been included in the implementation guide.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "exampleBoolean": {
+          "description": "If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_exampleBoolean": {
+          "description": "Extensions for exampleBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "exampleCanonical": {
+          "description": "If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_exampleCanonical": {
+          "description": "Extensions for exampleCanonical",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "groupingId": {
+          "description": "Reference to the id of the grouping this resource appears in.",
+          "$ref": "#/definitions/id"
+        },
+        "_groupingId": {
+          "description": "Extensions for groupingId",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "reference"
+      ]
+    },
+    "ImplementationGuide_Page": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "nameUrl": {
+          "description": "The source address for the page.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_nameUrl": {
+          "description": "Extensions for nameUrl",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "nameReference": {
+          "description": "The source address for the page.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "title": {
+          "description": "A short title used to represent this page in navigational structures such as table of contents, bread crumbs, etc.",
+          "$ref": "#/definitions/string"
+        },
+        "_title": {
+          "description": "Extensions for title",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "generation": {
+          "description": "A code that indicates how the page is generated.",
+          "enum": [
+            "html",
+            "markdown",
+            "xml",
+            "generated"
+          ]
+        },
+        "_generation": {
+          "description": "Extensions for generation",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "page": {
+          "description": "Nested Pages/Sections under this page.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Page"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ImplementationGuide_Parameter": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "code": {
+          "description": "apply | path-resource | path-pages | path-tx-cache | expansion-parameter | rule-broken-links | generate-xml | generate-json | generate-turtle | html-template.",
+          "enum": [
+            "apply",
+            "path-resource",
+            "path-pages",
+            "path-tx-cache",
+            "expansion-parameter",
+            "rule-broken-links",
+            "generate-xml",
+            "generate-json",
+            "generate-turtle",
+            "html-template"
+          ]
+        },
+        "_code": {
+          "description": "Extensions for code",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "value": {
+          "description": "Value for named type.",
+          "$ref": "#/definitions/string"
+        },
+        "_value": {
+          "description": "Extensions for value",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ImplementationGuide_Template": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "code": {
+          "description": "Type of template specified.",
+          "$ref": "#/definitions/code"
+        },
+        "_code": {
+          "description": "Extensions for code",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "source": {
+          "description": "The source location for the template.",
+          "$ref": "#/definitions/string"
+        },
+        "_source": {
+          "description": "Extensions for source",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "scope": {
+          "description": "The scope in which the template applies.",
+          "$ref": "#/definitions/string"
+        },
+        "_scope": {
+          "description": "Extensions for scope",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ImplementationGuide_Manifest": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "rendering": {
+          "description": "A pointer to official web page, PDF or other rendering of the implementation guide.",
+          "$ref": "#/definitions/url"
+        },
+        "_rendering": {
+          "description": "Extensions for rendering",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "resource": {
+          "description": "A resource that is part of the implementation guide. Conformance resources (value set, structure definition, capability statements etc.) are obvious candidates for inclusion, but any kind of resource can be included as an example resource.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Resource1"
+          },
+          "type": "array"
+        },
+        "page": {
+          "description": "Information about a page within the IG.",
+          "items": {
+            "$ref": "#/definitions/ImplementationGuide_Page1"
+          },
+          "type": "array"
+        },
+        "image": {
+          "description": "Indicates a relative path to an image that exists within the IG.",
+          "items": {
+            "$ref": "#/definitions/string"
+          },
+          "type": "array"
+        },
+        "_image": {
+          "description": "Extensions for image",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "other": {
+          "description": "Indicates the relative path of an additional non-page, non-image file that is part of the IG - e.g. zip, jar and similar files that could be the target of a hyperlink in a derived IG.",
+          "items": {
+            "$ref": "#/definitions/string"
+          },
+          "type": "array"
+        },
+        "_other": {
+          "description": "Extensions for other",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "resource"
+      ]
+    },
+    "ImplementationGuide_Resource1": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "reference": {
+          "description": "Where this resource is found.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "exampleBoolean": {
+          "description": "If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_exampleBoolean": {
+          "description": "Extensions for exampleBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "exampleCanonical": {
+          "description": "If true or a reference, indicates the resource is an example instance.  If a reference is present, indicates that the example is an example of the specified profile.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_exampleCanonical": {
+          "description": "Extensions for exampleCanonical",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "relativePath": {
+          "description": "The relative path for primary page for this resource within the IG.",
+          "$ref": "#/definitions/url"
+        },
+        "_relativePath": {
+          "description": "Extensions for relativePath",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "reference"
+      ]
+    },
+    "ImplementationGuide_Page1": {
+      "description": "A set of rules of how a particular interoperability or standards problem is solved - typically through the use of FHIR resources. This resource is used to gather all the parts of an implementation guide into a logical whole and to publish a computable definition of all the parts.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Relative path to the page.",
+          "$ref": "#/definitions/string"
+        },
+        "_name": {
+          "description": "Extensions for name",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "title": {
+          "description": "Label for the page intended for human display.",
+          "$ref": "#/definitions/string"
+        },
+        "_title": {
+          "description": "Extensions for title",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "anchor": {
+          "description": "The name of an anchor available on the page.",
+          "items": {
+            "$ref": "#/definitions/string"
+          },
+          "type": "array"
+        },
+        "_anchor": {
+          "description": "Extensions for anchor",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/Signature",
+  "$ref": "#/definitions/Signature",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "Signature": {
+      "description": "A signature along with supporting context. The signature may be a digital signature that is cryptographic in nature, or some other signature acceptable to the domain. This other signature may be as simple as a graphical image representing a hand-written signature, or a signature ceremony Different signature approaches have different utilities.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "An indication of the reason that the entity signed this document. This may be explicitly included as part of the signature information and can be used when determining accountability for various actions concerning the document.",
+          "items": {
+            "$ref": "Coding.schema.json#/definitions/Coding"
+          },
+          "type": "array"
+        },
+        "when": {
+          "description": "When the digital signature was signed.",
+          "$ref": "#/definitions/instant"
+        },
+        "_when": {
+          "description": "Extensions for when",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "who": {
+          "description": "A reference to an application-usable description of the identity that signed  (e.g. the signature used their private key).",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "onBehalfOf": {
+          "description": "A reference to an application-usable description of the identity that is represented by the signature.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "targetFormat": {
+          "description": "A mime type that indicates the technical format of the target resources signed by the signature.",
+          "$ref": "#/definitions/code"
+        },
+        "_targetFormat": {
+          "description": "Extensions for targetFormat",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "sigFormat": {
+          "description": "A mime type that indicates the technical format of the signature. Important mime types are application/signature+xml for X ML DigSig, application/jose for JWS, and image/* for a graphical image of a signature, etc.",
+          "$ref": "#/definitions/code"
+        },
+        "_sigFormat": {
+          "description": "Extensions for sigFormat",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "data": {
+          "description": "The base64 encoding of the Signature content. When signature is not recorded electronically this element would be empty.",
+          "$ref": "#/definitions/base64Binary"
+        },
+        "_data": {
+          "description": "Extensions for data",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "who"
+      ]
+    }
+  }
+}

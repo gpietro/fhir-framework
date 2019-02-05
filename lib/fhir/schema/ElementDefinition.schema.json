@@ -1,0 +1,2032 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/ElementDefinition",
+  "$ref": "#/definitions/ElementDefinition",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "ElementDefinition": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "The path identifies the element and is expressed as a \".\"-separated list of ancestor elements, beginning with the name of the resource or extension.",
+          "$ref": "#/definitions/string"
+        },
+        "_path": {
+          "description": "Extensions for path",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "representation": {
+          "description": "Codes that define how this element is represented in instances, when the deviation varies from the normal case.",
+          "items": {
+            "enum": [
+              "xmlAttr",
+              "xmlText",
+              "typeAttr",
+              "cdaText",
+              "xhtml"
+            ]
+          },
+          "type": "array"
+        },
+        "_representation": {
+          "description": "Extensions for representation",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "sliceName": {
+          "description": "The name of this element definition slice, when slicing is working. The name must be a token with no dots or spaces. This is a unique name referring to a specific set of constraints applied to this element, used to provide a name to different slices of the same element.",
+          "$ref": "#/definitions/string"
+        },
+        "_sliceName": {
+          "description": "Extensions for sliceName",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "sliceIsConstraining": {
+          "description": "If true, indicates that this slice definition is constraining a slice definition with the same name in an inherited profile. If false, the slice is not overriding any slice in an inherited profile. If missing, the slice might or might not be overriding a slice in an inherited profile, depending on the sliceName.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_sliceIsConstraining": {
+          "description": "Extensions for sliceIsConstraining",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "label": {
+          "description": "A single preferred label which is the text to display beside the element indicating its meaning or to use to prompt for the element in a user display or form.",
+          "$ref": "#/definitions/string"
+        },
+        "_label": {
+          "description": "Extensions for label",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "code": {
+          "description": "A code that has the same meaning as the element in a particular terminology.",
+          "items": {
+            "$ref": "Coding.schema.json#/definitions/Coding"
+          },
+          "type": "array"
+        },
+        "slicing": {
+          "description": "Indicates that the element is sliced into a set of alternative definitions (i.e. in a structure definition, there are multiple different constraints on a single element in the base resource). Slicing can be used in any resource that has cardinality ..* on the base resource, or any resource with a choice of types. The set of slices is any elements that come after this in the element sequence that have the same path, until a shorter path occurs (the shorter path terminates the set).",
+          "$ref": "#/definitions/ElementDefinition_Slicing"
+        },
+        "short": {
+          "description": "A concise description of what this element means (e.g. for use in autogenerated summaries).",
+          "$ref": "#/definitions/string"
+        },
+        "_short": {
+          "description": "Extensions for short",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "definition": {
+          "description": "Provides a complete explanation of the meaning of the data element for human readability.  For the case of elements derived from existing elements (e.g. constraints), the definition SHALL be consistent with the base definition, but convey the meaning of the element in the particular context of use of the resource. (Note: The text you are reading is specified in ElementDefinition.definition).",
+          "$ref": "#/definitions/markdown"
+        },
+        "_definition": {
+          "description": "Extensions for definition",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "comment": {
+          "description": "Explanatory notes and implementation guidance about the data element, including notes about how to use the data properly, exceptions to proper use, etc. (Note: The text you are reading is specified in ElementDefinition.comment).",
+          "$ref": "#/definitions/markdown"
+        },
+        "_comment": {
+          "description": "Extensions for comment",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "requirements": {
+          "description": "This element is for traceability of why the element was created and why the constraints exist as they do. This may be used to point to source materials or specifications that drove the structure of this element.",
+          "$ref": "#/definitions/markdown"
+        },
+        "_requirements": {
+          "description": "Extensions for requirements",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "alias": {
+          "description": "Identifies additional names by which this element might also be known.",
+          "items": {
+            "$ref": "#/definitions/string"
+          },
+          "type": "array"
+        },
+        "_alias": {
+          "description": "Extensions for alias",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "min": {
+          "description": "The minimum number of times this element SHALL appear in the instance.",
+          "$ref": "#/definitions/unsignedInt"
+        },
+        "_min": {
+          "description": "Extensions for min",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "max": {
+          "description": "The maximum number of times this element is permitted to appear in the instance.",
+          "$ref": "#/definitions/string"
+        },
+        "_max": {
+          "description": "Extensions for max",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "base": {
+          "description": "Information about the base definition of the element, provided to make it unnecessary for tools to trace the deviation of the element through the derived and related profiles. When the element definition is not the original definition of an element - i.g. either in a constraint on another type, or for elements from a super type in a snap shot - then the information in provided in the element definition may be different to the base definition. On the original definition of the element, it will be same.",
+          "$ref": "#/definitions/ElementDefinition_Base"
+        },
+        "contentReference": {
+          "description": "Identifies an element defined elsewhere in the definition whose content rules should be applied to the current element. ContentReferences bring across all the rules that are in the ElementDefinition for the element, including definitions, cardinality constraints, bindings, invariants etc.",
+          "$ref": "#/definitions/uri"
+        },
+        "_contentReference": {
+          "description": "Extensions for contentReference",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "type": {
+          "description": "The data type or resource that the value of this element is permitted to be.",
+          "items": {
+            "$ref": "#/definitions/ElementDefinition_Type"
+          },
+          "type": "array"
+        },
+        "defaultValueBase64Binary": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^(\\s*([0-9a-zA-Z\\+/\u003d]){4}\\s*)+$",
+          "type": "string"
+        },
+        "_defaultValueBase64Binary": {
+          "description": "Extensions for defaultValueBase64Binary",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueBoolean": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_defaultValueBoolean": {
+          "description": "Extensions for defaultValueBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueCanonical": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_defaultValueCanonical": {
+          "description": "Extensions for defaultValueCanonical",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueCode": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+          "type": "string"
+        },
+        "_defaultValueCode": {
+          "description": "Extensions for defaultValueCode",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueDate": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_defaultValueDate": {
+          "description": "Extensions for defaultValueDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueDateTime": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_defaultValueDateTime": {
+          "description": "Extensions for defaultValueDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueDecimal": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "number"
+        },
+        "_defaultValueDecimal": {
+          "description": "Extensions for defaultValueDecimal",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueId": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^[A-Za-z0-9\\-\\.]{1,64}$",
+          "type": "string"
+        },
+        "_defaultValueId": {
+          "description": "Extensions for defaultValueId",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueInstant": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+          "type": "string"
+        },
+        "_defaultValueInstant": {
+          "description": "Extensions for defaultValueInstant",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueInteger": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^-?([0]|([1-9][0-9]*))$",
+          "type": "number"
+        },
+        "_defaultValueInteger": {
+          "description": "Extensions for defaultValueInteger",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueMarkdown": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_defaultValueMarkdown": {
+          "description": "Extensions for defaultValueMarkdown",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueOid": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^urn:oid:[0-2](\\.(0|[1-9][0-9]*))+$",
+          "type": "string"
+        },
+        "_defaultValueOid": {
+          "description": "Extensions for defaultValueOid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValuePositiveInt": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "number"
+        },
+        "_defaultValuePositiveInt": {
+          "description": "Extensions for defaultValuePositiveInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueString": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_defaultValueString": {
+          "description": "Extensions for defaultValueString",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueTime": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "_defaultValueTime": {
+          "description": "Extensions for defaultValueTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueUnsignedInt": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_defaultValueUnsignedInt": {
+          "description": "Extensions for defaultValueUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueUri": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_defaultValueUri": {
+          "description": "Extensions for defaultValueUri",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueUrl": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_defaultValueUrl": {
+          "description": "Extensions for defaultValueUrl",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueUuid": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "pattern": "^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "_defaultValueUuid": {
+          "description": "Extensions for defaultValueUuid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "defaultValueAddress": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Address.schema.json#/definitions/Address"
+        },
+        "defaultValueAge": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Age.schema.json#/definitions/Age"
+        },
+        "defaultValueAnnotation": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Annotation.schema.json#/definitions/Annotation"
+        },
+        "defaultValueAttachment": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Attachment.schema.json#/definitions/Attachment"
+        },
+        "defaultValueCodeableConcept": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "defaultValueCoding": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Coding.schema.json#/definitions/Coding"
+        },
+        "defaultValueContactPoint": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "ContactPoint.schema.json#/definitions/ContactPoint"
+        },
+        "defaultValueCount": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Count.schema.json#/definitions/Count"
+        },
+        "defaultValueDistance": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Distance.schema.json#/definitions/Distance"
+        },
+        "defaultValueDuration": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Duration.schema.json#/definitions/Duration"
+        },
+        "defaultValueHumanName": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "HumanName.schema.json#/definitions/HumanName"
+        },
+        "defaultValueIdentifier": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Identifier.schema.json#/definitions/Identifier"
+        },
+        "defaultValueMoney": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "defaultValuePeriod": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "defaultValueQuantity": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "defaultValueRange": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Range.schema.json#/definitions/Range"
+        },
+        "defaultValueRatio": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Ratio.schema.json#/definitions/Ratio"
+        },
+        "defaultValueReference": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "defaultValueSampledData": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "SampledData.schema.json#/definitions/SampledData"
+        },
+        "defaultValueSignature": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Signature.schema.json#/definitions/Signature"
+        },
+        "defaultValueTiming": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Timing.schema.json#/definitions/Timing"
+        },
+        "defaultValueContactDetail": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "ContactDetail.schema.json#/definitions/ContactDetail"
+        },
+        "defaultValueContributor": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Contributor.schema.json#/definitions/Contributor"
+        },
+        "defaultValueDataRequirement": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "DataRequirement.schema.json#/definitions/DataRequirement"
+        },
+        "defaultValueExpression": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Expression.schema.json#/definitions/Expression"
+        },
+        "defaultValueParameterDefinition": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "ParameterDefinition.schema.json#/definitions/ParameterDefinition"
+        },
+        "defaultValueRelatedArtifact": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "RelatedArtifact.schema.json#/definitions/RelatedArtifact"
+        },
+        "defaultValueTriggerDefinition": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "TriggerDefinition.schema.json#/definitions/TriggerDefinition"
+        },
+        "defaultValueUsageContext": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "UsageContext.schema.json#/definitions/UsageContext"
+        },
+        "defaultValueDosage": {
+          "description": "The value that should be used if there is no value stated in the instance (e.g. \u0027if not otherwise specified, the abstract is false\u0027).",
+          "$ref": "Dosage.schema.json#/definitions/Dosage"
+        },
+        "meaningWhenMissing": {
+          "description": "The Implicit meaning that is to be understood when this element is missing (e.g. \u0027when this element is missing, the period is ongoing\u0027).",
+          "$ref": "#/definitions/markdown"
+        },
+        "_meaningWhenMissing": {
+          "description": "Extensions for meaningWhenMissing",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "orderMeaning": {
+          "description": "If present, indicates that the order of the repeating element has meaning and describes what that meaning is.  If absent, it means that the order of the element has no meaning.",
+          "$ref": "#/definitions/string"
+        },
+        "_orderMeaning": {
+          "description": "Extensions for orderMeaning",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedBase64Binary": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^(\\s*([0-9a-zA-Z\\+/\u003d]){4}\\s*)+$",
+          "type": "string"
+        },
+        "_fixedBase64Binary": {
+          "description": "Extensions for fixedBase64Binary",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedBoolean": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_fixedBoolean": {
+          "description": "Extensions for fixedBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedCanonical": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_fixedCanonical": {
+          "description": "Extensions for fixedCanonical",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedCode": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+          "type": "string"
+        },
+        "_fixedCode": {
+          "description": "Extensions for fixedCode",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedDate": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_fixedDate": {
+          "description": "Extensions for fixedDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedDateTime": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_fixedDateTime": {
+          "description": "Extensions for fixedDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedDecimal": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "number"
+        },
+        "_fixedDecimal": {
+          "description": "Extensions for fixedDecimal",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedId": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^[A-Za-z0-9\\-\\.]{1,64}$",
+          "type": "string"
+        },
+        "_fixedId": {
+          "description": "Extensions for fixedId",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedInstant": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+          "type": "string"
+        },
+        "_fixedInstant": {
+          "description": "Extensions for fixedInstant",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedInteger": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^-?([0]|([1-9][0-9]*))$",
+          "type": "number"
+        },
+        "_fixedInteger": {
+          "description": "Extensions for fixedInteger",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedMarkdown": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_fixedMarkdown": {
+          "description": "Extensions for fixedMarkdown",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedOid": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^urn:oid:[0-2](\\.(0|[1-9][0-9]*))+$",
+          "type": "string"
+        },
+        "_fixedOid": {
+          "description": "Extensions for fixedOid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedPositiveInt": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "number"
+        },
+        "_fixedPositiveInt": {
+          "description": "Extensions for fixedPositiveInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedString": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_fixedString": {
+          "description": "Extensions for fixedString",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedTime": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "_fixedTime": {
+          "description": "Extensions for fixedTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedUnsignedInt": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_fixedUnsignedInt": {
+          "description": "Extensions for fixedUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedUri": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_fixedUri": {
+          "description": "Extensions for fixedUri",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedUrl": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_fixedUrl": {
+          "description": "Extensions for fixedUrl",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedUuid": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "pattern": "^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "_fixedUuid": {
+          "description": "Extensions for fixedUuid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "fixedAddress": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Address.schema.json#/definitions/Address"
+        },
+        "fixedAge": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Age.schema.json#/definitions/Age"
+        },
+        "fixedAnnotation": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Annotation.schema.json#/definitions/Annotation"
+        },
+        "fixedAttachment": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Attachment.schema.json#/definitions/Attachment"
+        },
+        "fixedCodeableConcept": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "fixedCoding": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Coding.schema.json#/definitions/Coding"
+        },
+        "fixedContactPoint": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "ContactPoint.schema.json#/definitions/ContactPoint"
+        },
+        "fixedCount": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Count.schema.json#/definitions/Count"
+        },
+        "fixedDistance": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Distance.schema.json#/definitions/Distance"
+        },
+        "fixedDuration": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Duration.schema.json#/definitions/Duration"
+        },
+        "fixedHumanName": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "HumanName.schema.json#/definitions/HumanName"
+        },
+        "fixedIdentifier": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Identifier.schema.json#/definitions/Identifier"
+        },
+        "fixedMoney": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "fixedPeriod": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "fixedQuantity": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "fixedRange": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Range.schema.json#/definitions/Range"
+        },
+        "fixedRatio": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Ratio.schema.json#/definitions/Ratio"
+        },
+        "fixedReference": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "fixedSampledData": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "SampledData.schema.json#/definitions/SampledData"
+        },
+        "fixedSignature": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Signature.schema.json#/definitions/Signature"
+        },
+        "fixedTiming": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Timing.schema.json#/definitions/Timing"
+        },
+        "fixedContactDetail": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "ContactDetail.schema.json#/definitions/ContactDetail"
+        },
+        "fixedContributor": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Contributor.schema.json#/definitions/Contributor"
+        },
+        "fixedDataRequirement": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "DataRequirement.schema.json#/definitions/DataRequirement"
+        },
+        "fixedExpression": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Expression.schema.json#/definitions/Expression"
+        },
+        "fixedParameterDefinition": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "ParameterDefinition.schema.json#/definitions/ParameterDefinition"
+        },
+        "fixedRelatedArtifact": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "RelatedArtifact.schema.json#/definitions/RelatedArtifact"
+        },
+        "fixedTriggerDefinition": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "TriggerDefinition.schema.json#/definitions/TriggerDefinition"
+        },
+        "fixedUsageContext": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "UsageContext.schema.json#/definitions/UsageContext"
+        },
+        "fixedDosage": {
+          "description": "Specifies a value that SHALL be exactly the value  for this element in the instance. For purposes of comparison, non-significant whitespace is ignored, and all values must be an exact match (case and accent sensitive). Missing elements/attributes must also be missing.",
+          "$ref": "Dosage.schema.json#/definitions/Dosage"
+        },
+        "patternBase64Binary": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^(\\s*([0-9a-zA-Z\\+/\u003d]){4}\\s*)+$",
+          "type": "string"
+        },
+        "_patternBase64Binary": {
+          "description": "Extensions for patternBase64Binary",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternBoolean": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_patternBoolean": {
+          "description": "Extensions for patternBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternCanonical": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_patternCanonical": {
+          "description": "Extensions for patternCanonical",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternCode": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+          "type": "string"
+        },
+        "_patternCode": {
+          "description": "Extensions for patternCode",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternDate": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_patternDate": {
+          "description": "Extensions for patternDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternDateTime": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_patternDateTime": {
+          "description": "Extensions for patternDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternDecimal": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "number"
+        },
+        "_patternDecimal": {
+          "description": "Extensions for patternDecimal",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternId": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^[A-Za-z0-9\\-\\.]{1,64}$",
+          "type": "string"
+        },
+        "_patternId": {
+          "description": "Extensions for patternId",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternInstant": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+          "type": "string"
+        },
+        "_patternInstant": {
+          "description": "Extensions for patternInstant",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternInteger": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^-?([0]|([1-9][0-9]*))$",
+          "type": "number"
+        },
+        "_patternInteger": {
+          "description": "Extensions for patternInteger",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternMarkdown": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_patternMarkdown": {
+          "description": "Extensions for patternMarkdown",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternOid": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^urn:oid:[0-2](\\.(0|[1-9][0-9]*))+$",
+          "type": "string"
+        },
+        "_patternOid": {
+          "description": "Extensions for patternOid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternPositiveInt": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "number"
+        },
+        "_patternPositiveInt": {
+          "description": "Extensions for patternPositiveInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternString": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_patternString": {
+          "description": "Extensions for patternString",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternTime": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "_patternTime": {
+          "description": "Extensions for patternTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternUnsignedInt": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_patternUnsignedInt": {
+          "description": "Extensions for patternUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternUri": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_patternUri": {
+          "description": "Extensions for patternUri",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternUrl": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_patternUrl": {
+          "description": "Extensions for patternUrl",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternUuid": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "pattern": "^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "_patternUuid": {
+          "description": "Extensions for patternUuid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "patternAddress": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Address.schema.json#/definitions/Address"
+        },
+        "patternAge": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Age.schema.json#/definitions/Age"
+        },
+        "patternAnnotation": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Annotation.schema.json#/definitions/Annotation"
+        },
+        "patternAttachment": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Attachment.schema.json#/definitions/Attachment"
+        },
+        "patternCodeableConcept": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "patternCoding": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Coding.schema.json#/definitions/Coding"
+        },
+        "patternContactPoint": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "ContactPoint.schema.json#/definitions/ContactPoint"
+        },
+        "patternCount": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Count.schema.json#/definitions/Count"
+        },
+        "patternDistance": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Distance.schema.json#/definitions/Distance"
+        },
+        "patternDuration": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Duration.schema.json#/definitions/Duration"
+        },
+        "patternHumanName": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "HumanName.schema.json#/definitions/HumanName"
+        },
+        "patternIdentifier": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Identifier.schema.json#/definitions/Identifier"
+        },
+        "patternMoney": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "patternPeriod": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "patternQuantity": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "patternRange": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Range.schema.json#/definitions/Range"
+        },
+        "patternRatio": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Ratio.schema.json#/definitions/Ratio"
+        },
+        "patternReference": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "patternSampledData": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "SampledData.schema.json#/definitions/SampledData"
+        },
+        "patternSignature": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Signature.schema.json#/definitions/Signature"
+        },
+        "patternTiming": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Timing.schema.json#/definitions/Timing"
+        },
+        "patternContactDetail": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "ContactDetail.schema.json#/definitions/ContactDetail"
+        },
+        "patternContributor": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Contributor.schema.json#/definitions/Contributor"
+        },
+        "patternDataRequirement": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "DataRequirement.schema.json#/definitions/DataRequirement"
+        },
+        "patternExpression": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Expression.schema.json#/definitions/Expression"
+        },
+        "patternParameterDefinition": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "ParameterDefinition.schema.json#/definitions/ParameterDefinition"
+        },
+        "patternRelatedArtifact": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "RelatedArtifact.schema.json#/definitions/RelatedArtifact"
+        },
+        "patternTriggerDefinition": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "TriggerDefinition.schema.json#/definitions/TriggerDefinition"
+        },
+        "patternUsageContext": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "UsageContext.schema.json#/definitions/UsageContext"
+        },
+        "patternDosage": {
+          "description": "Specifies a value that the value in the instance SHALL follow - that is, any value in the pattern must be found in the instance. Other additional values may be found too. This is effectively constraint by example.  \n\nWhen pattern[x] is used to constrain a primitive, it means that the value provided in the pattern[x] must match the instance value exactly.\n\nWhen pattern[x] is used to constrain an array, it means that each element provided in the pattern[x] array must (recursively) match at least one element from the instance array.\n\nWhen pattern[x] is used to constrain a complex object, it means that each property in the pattern must be present in the complex object, and its value must recursively match -- i.e.,\n\n1. If primitive: it must match exactly the pattern value\n2. If a complex object: it must match (recursively) the pattern value\n3. If an array: it must match (recursively) the pattern value.",
+          "$ref": "Dosage.schema.json#/definitions/Dosage"
+        },
+        "example": {
+          "description": "A sample value for this element demonstrating the type of information that would typically be found in the element.",
+          "items": {
+            "$ref": "#/definitions/ElementDefinition_Example"
+          },
+          "type": "array"
+        },
+        "minValueDate": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_minValueDate": {
+          "description": "Extensions for minValueDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValueDateTime": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_minValueDateTime": {
+          "description": "Extensions for minValueDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValueInstant": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+          "type": "string"
+        },
+        "_minValueInstant": {
+          "description": "Extensions for minValueInstant",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValueTime": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "_minValueTime": {
+          "description": "Extensions for minValueTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValueDecimal": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "number"
+        },
+        "_minValueDecimal": {
+          "description": "Extensions for minValueDecimal",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValueInteger": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^-?([0]|([1-9][0-9]*))$",
+          "type": "number"
+        },
+        "_minValueInteger": {
+          "description": "Extensions for minValueInteger",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValuePositiveInt": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "number"
+        },
+        "_minValuePositiveInt": {
+          "description": "Extensions for minValuePositiveInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValueUnsignedInt": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_minValueUnsignedInt": {
+          "description": "Extensions for minValueUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "minValueQuantity": {
+          "description": "The minimum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "maxValueDate": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_maxValueDate": {
+          "description": "Extensions for maxValueDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValueDateTime": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_maxValueDateTime": {
+          "description": "Extensions for maxValueDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValueInstant": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+          "type": "string"
+        },
+        "_maxValueInstant": {
+          "description": "Extensions for maxValueInstant",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValueTime": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "_maxValueTime": {
+          "description": "Extensions for maxValueTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValueDecimal": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "number"
+        },
+        "_maxValueDecimal": {
+          "description": "Extensions for maxValueDecimal",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValueInteger": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^-?([0]|([1-9][0-9]*))$",
+          "type": "number"
+        },
+        "_maxValueInteger": {
+          "description": "Extensions for maxValueInteger",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValuePositiveInt": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "number"
+        },
+        "_maxValuePositiveInt": {
+          "description": "Extensions for maxValuePositiveInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValueUnsignedInt": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_maxValueUnsignedInt": {
+          "description": "Extensions for maxValueUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "maxValueQuantity": {
+          "description": "The maximum allowed value for the element. The value is inclusive. This is allowed for the types date, dateTime, instant, time, decimal, integer, and Quantity.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "maxLength": {
+          "description": "Indicates the maximum length in characters that is permitted to be present in conformant instances and which is expected to be supported by conformant consumers that support the element.",
+          "$ref": "#/definitions/integer"
+        },
+        "_maxLength": {
+          "description": "Extensions for maxLength",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "condition": {
+          "description": "A reference to an invariant that may make additional statements about the cardinality or value in the instance.",
+          "items": {
+            "$ref": "#/definitions/id"
+          },
+          "type": "array"
+        },
+        "_condition": {
+          "description": "Extensions for condition",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "constraint": {
+          "description": "Formal constraints such as co-occurrence and other constraints that can be computationally evaluated within the context of the instance.",
+          "items": {
+            "$ref": "#/definitions/ElementDefinition_Constraint"
+          },
+          "type": "array"
+        },
+        "mustSupport": {
+          "description": "If true, implementations that produce or consume resources SHALL provide \"support\" for the element in some meaningful way.  If false, the element may be ignored and not supported. If false, whether to populate or use the data element in any way is at the discretion of the implementation.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_mustSupport": {
+          "description": "Extensions for mustSupport",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "isModifier": {
+          "description": "If true, the value of this element affects the interpretation of the element or resource that contains it, and the value of the element cannot be ignored. Typically, this is used for status, negation and qualification codes. The effect of this is that the element cannot be ignored by systems: they SHALL either recognize the element and process it, and/or a pre-determination has been made that it is not relevant to their particular system.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_isModifier": {
+          "description": "Extensions for isModifier",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "isModifierReason": {
+          "description": "Explains how that element affects the interpretation of the resource or element that contains it.",
+          "$ref": "#/definitions/string"
+        },
+        "_isModifierReason": {
+          "description": "Extensions for isModifierReason",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "isSummary": {
+          "description": "Whether the element should be included if a client requests a search with the parameter _summary\u003dtrue.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_isSummary": {
+          "description": "Extensions for isSummary",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "binding": {
+          "description": "Binds to a value set if this element is coded (code, Coding, CodeableConcept, Quantity), or the data types (string, uri).",
+          "$ref": "#/definitions/ElementDefinition_Binding"
+        },
+        "mapping": {
+          "description": "Identifies a concept from an external specification that roughly corresponds to this element.",
+          "items": {
+            "$ref": "#/definitions/ElementDefinition_Mapping"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Slicing": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "discriminator": {
+          "description": "Designates which child elements are used to discriminate between the slices when processing an instance. If one or more discriminators are provided, the value of the child elements in the instance data SHALL completely distinguish which slice the element in the resource matches based on the allowed values for those elements in each of the slices.",
+          "items": {
+            "$ref": "#/definitions/ElementDefinition_Discriminator"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "A human-readable text description of how the slicing works. If there is no discriminator, this is required to be present to provide whatever information is possible about how the slices can be differentiated.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "ordered": {
+          "description": "If the matching elements have to occur in the same order as defined in the profile.",
+          "$ref": "#/definitions/boolean"
+        },
+        "_ordered": {
+          "description": "Extensions for ordered",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "rules": {
+          "description": "Whether additional slices are allowed or not. When the slices are ordered, profile authors can also say that additional slices are only allowed at the end.",
+          "enum": [
+            "closed",
+            "open",
+            "openAtEnd"
+          ]
+        },
+        "_rules": {
+          "description": "Extensions for rules",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Discriminator": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "How the element value is interpreted when discrimination is evaluated.",
+          "enum": [
+            "value",
+            "exists",
+            "pattern",
+            "type",
+            "profile"
+          ]
+        },
+        "_type": {
+          "description": "Extensions for type",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "path": {
+          "description": "A FHIRPath expression, using [the simple subset of FHIRPath](fhirpath.html#simple), that is used to identify the element on which discrimination is based.",
+          "$ref": "#/definitions/string"
+        },
+        "_path": {
+          "description": "Extensions for path",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Base": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "path": {
+          "description": "The Path that identifies the base element - this matches the ElementDefinition.path for that element. Across FHIR, there is only one base definition of any element - that is, an element definition on a [[[StructureDefinition]]] without a StructureDefinition.base.",
+          "$ref": "#/definitions/string"
+        },
+        "_path": {
+          "description": "Extensions for path",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "min": {
+          "description": "Minimum cardinality of the base element identified by the path.",
+          "$ref": "#/definitions/unsignedInt"
+        },
+        "_min": {
+          "description": "Extensions for min",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "max": {
+          "description": "Maximum cardinality of the base element identified by the path.",
+          "$ref": "#/definitions/string"
+        },
+        "_max": {
+          "description": "Extensions for max",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Type": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "code": {
+          "description": "URL of Data type or Resource that is a(or the) type used for this element. References are URLs that are relative to http://hl7.org/fhir/StructureDefinition e.g. \"string\" is a reference to http://hl7.org/fhir/StructureDefinition/string. Absolute URLs are only allowed in logical models.",
+          "$ref": "#/definitions/uri"
+        },
+        "_code": {
+          "description": "Extensions for code",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "profile": {
+          "description": "Identifies a profile structure or implementation Guide that applies to the datatype this element refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the type SHALL conform to at least one profile defined in the implementation guide.",
+          "items": {
+            "$ref": "canonical.schema.json#/definitions/canonical"
+          },
+          "type": "array"
+        },
+        "targetProfile": {
+          "description": "Used when the type is \"Reference\" or \"canonical\", and identifies a profile structure or implementation Guide that applies to the target of the reference this element refers to. If any profiles are specified, then the content must conform to at least one of them. The URL can be a local reference - to a contained StructureDefinition, or a reference to another StructureDefinition or Implementation Guide by a canonical URL. When an implementation guide is specified, the target resource SHALL conform to at least one profile defined in the implementation guide.",
+          "items": {
+            "$ref": "canonical.schema.json#/definitions/canonical"
+          },
+          "type": "array"
+        },
+        "aggregation": {
+          "description": "If the type is a reference to another resource, how the resource is or can be aggregated - is it a contained resource, or a reference, and if the context is a bundle, is it included in the bundle.",
+          "items": {
+            "enum": [
+              "contained",
+              "referenced",
+              "bundled"
+            ]
+          },
+          "type": "array"
+        },
+        "_aggregation": {
+          "description": "Extensions for aggregation",
+          "items": {
+            "$ref": "Element.schema.json#/definitions/Element"
+          },
+          "type": "array"
+        },
+        "versioning": {
+          "description": "Whether this reference needs to be version specific or version independent, or whether either can be used.",
+          "enum": [
+            "either",
+            "independent",
+            "specific"
+          ]
+        },
+        "_versioning": {
+          "description": "Extensions for versioning",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Example": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "label": {
+          "description": "Describes the purpose of this example amoung the set of examples.",
+          "$ref": "#/definitions/string"
+        },
+        "_label": {
+          "description": "Extensions for label",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueBase64Binary": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^(\\s*([0-9a-zA-Z\\+/\u003d]){4}\\s*)+$",
+          "type": "string"
+        },
+        "_valueBase64Binary": {
+          "description": "Extensions for valueBase64Binary",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueBoolean": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_valueBoolean": {
+          "description": "Extensions for valueBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueCanonical": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_valueCanonical": {
+          "description": "Extensions for valueCanonical",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueCode": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^[^\\s]+(\\s[^\\s]+)*$",
+          "type": "string"
+        },
+        "_valueCode": {
+          "description": "Extensions for valueCode",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueDate": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1]))?)?$",
+          "type": "string"
+        },
+        "_valueDate": {
+          "description": "Extensions for valueDate",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueDateTime": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_valueDateTime": {
+          "description": "Extensions for valueDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueDecimal": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^-?(0|[1-9][0-9]*)(\\.[0-9]+)?([eE][+-]?[0-9]+)?$",
+          "type": "number"
+        },
+        "_valueDecimal": {
+          "description": "Extensions for valueDecimal",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueId": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^[A-Za-z0-9\\-\\.]{1,64}$",
+          "type": "string"
+        },
+        "_valueId": {
+          "description": "Extensions for valueId",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueInstant": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))$",
+          "type": "string"
+        },
+        "_valueInstant": {
+          "description": "Extensions for valueInstant",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueInteger": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^-?([0]|([1-9][0-9]*))$",
+          "type": "number"
+        },
+        "_valueInteger": {
+          "description": "Extensions for valueInteger",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueMarkdown": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_valueMarkdown": {
+          "description": "Extensions for valueMarkdown",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueOid": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^urn:oid:[0-2](\\.(0|[1-9][0-9]*))+$",
+          "type": "string"
+        },
+        "_valueOid": {
+          "description": "Extensions for valueOid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valuePositiveInt": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^[1-9][0-9]*$",
+          "type": "number"
+        },
+        "_valuePositiveInt": {
+          "description": "Extensions for valuePositiveInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueString": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^[ \\r\\n\\t\\S]+$",
+          "type": "string"
+        },
+        "_valueString": {
+          "description": "Extensions for valueString",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueTime": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?$",
+          "type": "string"
+        },
+        "_valueTime": {
+          "description": "Extensions for valueTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueUnsignedInt": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^[0]|([1-9][0-9]*)$",
+          "type": "number"
+        },
+        "_valueUnsignedInt": {
+          "description": "Extensions for valueUnsignedInt",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueUri": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_valueUri": {
+          "description": "Extensions for valueUri",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueUrl": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^\\S*$",
+          "type": "string"
+        },
+        "_valueUrl": {
+          "description": "Extensions for valueUrl",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueUuid": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "pattern": "^urn:uuid:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+          "type": "string"
+        },
+        "_valueUuid": {
+          "description": "Extensions for valueUuid",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueAddress": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Address.schema.json#/definitions/Address"
+        },
+        "valueAge": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Age.schema.json#/definitions/Age"
+        },
+        "valueAnnotation": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Annotation.schema.json#/definitions/Annotation"
+        },
+        "valueAttachment": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Attachment.schema.json#/definitions/Attachment"
+        },
+        "valueCodeableConcept": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "valueCoding": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Coding.schema.json#/definitions/Coding"
+        },
+        "valueContactPoint": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "ContactPoint.schema.json#/definitions/ContactPoint"
+        },
+        "valueCount": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Count.schema.json#/definitions/Count"
+        },
+        "valueDistance": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Distance.schema.json#/definitions/Distance"
+        },
+        "valueDuration": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Duration.schema.json#/definitions/Duration"
+        },
+        "valueHumanName": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "HumanName.schema.json#/definitions/HumanName"
+        },
+        "valueIdentifier": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Identifier.schema.json#/definitions/Identifier"
+        },
+        "valueMoney": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Money.schema.json#/definitions/Money"
+        },
+        "valuePeriod": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "valueQuantity": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "valueRange": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Range.schema.json#/definitions/Range"
+        },
+        "valueRatio": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Ratio.schema.json#/definitions/Ratio"
+        },
+        "valueReference": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "valueSampledData": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "SampledData.schema.json#/definitions/SampledData"
+        },
+        "valueSignature": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Signature.schema.json#/definitions/Signature"
+        },
+        "valueTiming": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Timing.schema.json#/definitions/Timing"
+        },
+        "valueContactDetail": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "ContactDetail.schema.json#/definitions/ContactDetail"
+        },
+        "valueContributor": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Contributor.schema.json#/definitions/Contributor"
+        },
+        "valueDataRequirement": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "DataRequirement.schema.json#/definitions/DataRequirement"
+        },
+        "valueExpression": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Expression.schema.json#/definitions/Expression"
+        },
+        "valueParameterDefinition": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "ParameterDefinition.schema.json#/definitions/ParameterDefinition"
+        },
+        "valueRelatedArtifact": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "RelatedArtifact.schema.json#/definitions/RelatedArtifact"
+        },
+        "valueTriggerDefinition": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "TriggerDefinition.schema.json#/definitions/TriggerDefinition"
+        },
+        "valueUsageContext": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "UsageContext.schema.json#/definitions/UsageContext"
+        },
+        "valueDosage": {
+          "description": "The actual value for the element, which must be one of the types allowed for this element.",
+          "$ref": "Dosage.schema.json#/definitions/Dosage"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Constraint": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "key": {
+          "description": "Allows identification of which elements have their cardinalities impacted by the constraint.  Will not be referenced for constraints that do not affect cardinality.",
+          "$ref": "#/definitions/id"
+        },
+        "_key": {
+          "description": "Extensions for key",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "requirements": {
+          "description": "Description of why this constraint is necessary or appropriate.",
+          "$ref": "#/definitions/string"
+        },
+        "_requirements": {
+          "description": "Extensions for requirements",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "severity": {
+          "description": "Identifies the impact constraint violation has on the conformance of the instance.",
+          "enum": [
+            "error",
+            "warning"
+          ]
+        },
+        "_severity": {
+          "description": "Extensions for severity",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "human": {
+          "description": "Text that can be used to describe the constraint in messages identifying that the constraint has been violated.",
+          "$ref": "#/definitions/string"
+        },
+        "_human": {
+          "description": "Extensions for human",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "expression": {
+          "description": "A [FHIRPath](fhirpath.html) expression of constraint that can be executed to see if this constraint is met.",
+          "$ref": "#/definitions/string"
+        },
+        "_expression": {
+          "description": "Extensions for expression",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "xpath": {
+          "description": "An XPath expression of constraint that can be executed to see if this constraint is met.",
+          "$ref": "#/definitions/string"
+        },
+        "_xpath": {
+          "description": "Extensions for xpath",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "source": {
+          "description": "A reference to the original source of the constraint, for traceability purposes.",
+          "$ref": "canonical.schema.json#/definitions/canonical"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Binding": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "strength": {
+          "description": "Indicates the degree of conformance expectations associated with this binding - that is, the degree to which the provided value set must be adhered to in the instances.",
+          "enum": [
+            "required",
+            "extensible",
+            "preferred",
+            "example"
+          ]
+        },
+        "_strength": {
+          "description": "Extensions for strength",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "description": {
+          "description": "Describes the intended use of this particular set of codes.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "valueSet": {
+          "description": "Refers to the value set that identifies the set of codes the binding refers to.",
+          "$ref": "canonical.schema.json#/definitions/canonical"
+        }
+      },
+      "additionalProperties": false
+    },
+    "ElementDefinition_Mapping": {
+      "description": "Captures constraints on each element within the resource, profile, or extension.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "identity": {
+          "description": "An internal reference to the definition of a mapping.",
+          "$ref": "#/definitions/id"
+        },
+        "_identity": {
+          "description": "Extensions for identity",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "language": {
+          "description": "Identifies the computable language in which mapping.map is expressed.",
+          "$ref": "#/definitions/code"
+        },
+        "_language": {
+          "description": "Extensions for language",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "map": {
+          "description": "Expresses what part of the target specification corresponds to this element.",
+          "$ref": "#/definitions/string"
+        },
+        "_map": {
+          "description": "Extensions for map",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "comment": {
+          "description": "Comments that provide information about the mapping or its use.",
+          "$ref": "#/definitions/string"
+        },
+        "_comment": {
+          "description": "Extensions for comment",
+          "$ref": "Element.schema.json#/definitions/Element"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,1 +1,336 @@
-{"$schema":"http://json-schema.org/draft-04/schema#","id":"http://hl7.org/fhir/json-schema/Specimen","$ref":"#/definitions/Specimen","description":"see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas","definitions":{"Specimen":{"description":"A sample to be used for analysis.","properties":{"resourceType":{"description":"This is a Specimen resource","type":"string","enum":["Specimen"]},"identifier":{"description":"Id for specimen.","type":"array","items":{"$ref":"#/definitions/Identifier","type":"object"}},"accessionIdentifier":{"description":"The identifier assigned by the lab when accessioning specimen(s). This is not necessarily the same as the specimen identifier, depending on local lab procedures.","$ref":"#/definitions/Identifier","type":"object"},"status":{"description":"The availability of the specimen.","enum":["available","unavailable","unsatisfactory","entered-in-error"],"type":"string"},"type":{"description":"The kind of material that forms the specimen.","$ref":"#/definitions/CodeableConcept","type":"object"},"subject":{"description":"Where the specimen came from. This may be from the patient(s) or from the environment or a device.","$ref":"#/definitions/Reference","type":"object"},"receivedTime":{"description":"Time when specimen was received for processing or testing.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"parent":{"description":"Reference to the parent (source) specimen which is used when the specimen was either derived from or a component of another specimen.","type":"array","items":{"$ref":"#/definitions/Reference","type":"object"}},"request":{"description":"Details concerning a test or procedure request that required a specimen to be collected.","type":"array","items":{"$ref":"#/definitions/Reference","type":"object"}},"collection":{"description":"Details concerning the specimen collection.","$ref":"#/definitions/Specimen_Collection"},"processing":{"description":"Details concerning processing and processing steps for the specimen.","type":"array","items":{"$ref":"#/definitions/Specimen_Processing"}},"container":{"description":"The container holding the specimen.  The recursive nature of containers; i.e. blood in tube in tray in rack is not addressed here.","type":"array","items":{"$ref":"#/definitions/Specimen_Container"}},"note":{"description":"To communicate any details or issues about the specimen or during the specimen collection. (for example: broken vial, sent with patient, frozen).","type":"array","items":{"$ref":"#/definitions/Annotation","type":"object"}}},"required":["subject","resourceType"]},"Specimen_Collection":{"description":"A sample to be used for analysis.","properties":{"collector":{"description":"Person who collected the specimen.","$ref":"#/definitions/Reference","type":"object"},"collectedDateTime":{"description":"Time when specimen was collected from subject - the physiologically relevant time.","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?","type":"string"},"collectedPeriod":{"description":"Time when specimen was collected from subject - the physiologically relevant time.","$ref":"#/definitions/Period","type":"object"},"quantity":{"description":"The quantity of specimen collected; for instance the volume of a blood sample, or the physical measurement of an anatomic pathology sample.","$ref":"#/definitions/Quantity","type":"object"},"method":{"description":"A coded value specifying the technique that is used to perform the procedure.","$ref":"#/definitions/CodeableConcept","type":"object"},"bodySite":{"description":"Anatomical location from which the specimen was collected (if subject is a patient). This is the target site.  This element is not used for environmental specimens.","$ref":"#/definitions/CodeableConcept","type":"object"}}},"Specimen_Processing":{"description":"A sample to be used for analysis.","properties":{"description":{"description":"Textual description of procedure.","type":"string"},"procedure":{"description":"A coded value specifying the procedure used to process the specimen.","$ref":"#/definitions/CodeableConcept","type":"object"},"additive":{"description":"Material used in the processing step.","type":"array","items":{"$ref":"#/definitions/Reference","type":"object"}},"timeDateTime":{"description":"A record of the time or period when the specimen processing occurred.  For example the time of sample fixation or the period of time the sample was in formalin.","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?","type":"string"},"timePeriod":{"description":"A record of the time or period when the specimen processing occurred.  For example the time of sample fixation or the period of time the sample was in formalin.","$ref":"#/definitions/Period","type":"object"}}},"Specimen_Container":{"description":"A sample to be used for analysis.","properties":{"identifier":{"description":"Id for container. There may be multiple; a manufacturer's bar code, lab assigned identifier, etc. The container ID may differ from the specimen id in some circumstances.","type":"array","items":{"$ref":"#/definitions/Identifier","type":"object"}},"description":{"description":"Textual description of the container.","type":"string"},"type":{"description":"The type of container associated with the specimen (e.g. slide, aliquot, etc.).","$ref":"#/definitions/CodeableConcept","type":"object"},"capacity":{"description":"The capacity (volume or other measure) the container may contain.","$ref":"#/definitions/Quantity","type":"object"},"specimenQuantity":{"description":"The quantity of specimen in the container; may be volume, dimensions, or other appropriate measurements, depending on the specimen type.","$ref":"#/definitions/Quantity","type":"object"},"additiveCodeableConcept":{"description":"Introduced substance to preserve, maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA.","$ref":"#/definitions/CodeableConcept","type":"object"},"additiveReference":{"description":"Introduced substance to preserve, maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA.","$ref":"#/definitions/Reference","type":"object"}}},"Identifier":{"description":"A technical identifier - identifies some entity uniquely and unambiguously.","properties":{"use":{"description":"The purpose of this identifier.","enum":["usual","official","temp","secondary"],"type":"string"},"type":{"description":"A coded type for the identifier that can be used to determine which identifier to use for a specific purpose.","$ref":"#/definitions/CodeableConcept","type":"object"},"system":{"description":"Establishes the namespace for the value - that is, a URL that describes a set values that are unique.","type":"string"},"value":{"description":"The portion of the identifier typically relevant to the user and which is unique within the context of the system.","type":"string"},"period":{"description":"Time period during which identifier is/was valid for use.","$ref":"#/definitions/Period","type":"object"},"assigner":{"description":"Organization that issued/manages the identifier.","$ref":"#/definitions/Reference","type":"object"}}},"CodeableConcept":{"description":"A concept that may be defined by a formal reference to a terminology or ontology or may be provided by text.","properties":{"coding":{"description":"A reference to a code defined by a terminology system.","type":"array","items":{"$ref":"#/definitions/Coding","type":"object"}},"text":{"description":"A human language representation of the concept as seen/selected/uttered by the user who entered the data and/or which represents the intended meaning of the user.","type":"string"}}},"Reference":{"description":"A reference from one resource to another.","properties":{"reference":{"description":"A reference to a location at which the other resource is found. The reference may be a relative reference, in which case it is relative to the service base URL, or an absolute URL that resolves to the location where the resource is found. The reference may be version specific or not. If the reference is not to a FHIR RESTful server, then it should be assumed to be version specific. Internal fragment references (start with '#') refer to contained resources.","type":"string"},"identifier":{"description":"An identifier for the other resource. This is used when there is no way to reference the other resource directly, either because the entity is not available through a FHIR server, or because there is no way for the author of the resource to convert a known identifier to an actual location. There is no requirement that a Reference.identifier point to something that is actually exposed as a FHIR instance, but it SHALL point to a business concept that would be expected to be exposed as a FHIR instance, and that instance would need to be of a FHIR resource type allowed by the reference.","$ref":"#/definitions/Identifier","type":"object"},"display":{"description":"Plain text narrative that identifies the resource in addition to the resource reference.","type":"string"}}},"Annotation":{"description":"A  text note which also  contains information about who made the statement and when.","properties":{"authorReference":{"description":"The individual responsible for making the annotation.","$ref":"#/definitions/Reference","type":"object"},"authorString":{"description":"The individual responsible for making the annotation.","type":"string"},"time":{"description":"Indicates when this particular annotation was made.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"text":{"description":"The text of the annotation.","type":"string"}}},"Period":{"description":"A time period defined by a start and end date and optionally time.","properties":{"start":{"description":"The start of the period. The boundary is inclusive.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"},"end":{"description":"The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time.","type":"string","pattern":"-?[0-9]{4}(-(0[1-9]|1[0-2])(-(0[0-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9](\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?"}}},"Quantity":{"description":"A measured amount (or an amount that can potentially be measured). Note that measured amounts include amounts that are not precisely quantified, including amounts involving arbitrary units and floating currencies.","properties":{"value":{"description":"The value of the measured amount. The value includes an implicit precision in the presentation of the value.","type":"number","pattern":"-?([0]|([1-9][0-9]*))(\\.[0-9]+)?"},"comparator":{"description":"How the value should be understood and represented - whether the actual value is greater or less than the stated value due to measurement issues; e.g. if the comparator is \"<\" , then the real value is < stated value.","enum":["<","<=",">=",">"],"type":"string"},"unit":{"description":"A human-readable form of the unit.","type":"string"},"system":{"description":"The identification of the system that provides the coded form of the unit.","type":"string"},"code":{"description":"A computer processable form of the unit in some unit representation system.","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"}}},"Coding":{"description":"A reference to a code defined by a terminology system.","properties":{"system":{"description":"The identification of the code system that defines the meaning of the symbol in the code.","type":"string"},"version":{"description":"The version of the code system which was used when choosing this code. Note that a well-maintained code system does not need the version reported, because the meaning of codes is consistent across versions. However this cannot consistently be assured. and when the meaning is not guaranteed to be consistent, the version SHOULD be exchanged.","type":"string"},"code":{"description":"A symbol in syntax defined by the system. The symbol may be a predefined code or an expression in a syntax defined by the coding system (e.g. post-coordination).","type":"string","pattern":"[^\\s]+([\\s]?[^\\s]+)*"},"display":{"description":"A representation of the meaning of the code in the system, following the rules of the system.","type":"string"},"userSelected":{"description":"Indicates that this coding was chosen by a user directly - i.e. off a pick list of available items (codes or displays).","type":"boolean"}}}},"type":"object"}
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/Specimen",
+  "$ref": "#/definitions/Specimen",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "Specimen": {
+      "description": "A sample to be used for analysis.",
+      "properties": {
+        "resourceType": {
+          "description": "This is a Specimen resource",
+          "const": "Specimen"
+        },
+        "id": {
+          "description": "The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes.",
+          "$ref": "id.schema.json#/definitions/id"
+        },
+        "meta": {
+          "description": "The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content might not always be associated with version changes to the resource.",
+          "$ref": "Meta.schema.json#/definitions/Meta"
+        },
+        "implicitRules": {
+          "description": "A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content. Often, this is a reference to an implementation guide that defines the special rules along with other profiles etc.",
+          "$ref": "#/definitions/uri"
+        },
+        "_implicitRules": {
+          "description": "Extensions for implicitRules",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "language": {
+          "description": "The base language in which the resource is written.",
+          "$ref": "#/definitions/code"
+        },
+        "_language": {
+          "description": "Extensions for language",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "text": {
+          "description": "A human-readable narrative that contains a summary of the resource and can be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it \"clinically safe\" for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety.",
+          "$ref": "Narrative.schema.json#/definitions/Narrative"
+        },
+        "contained": {
+          "description": "These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope.",
+          "items": {
+            "$ref": "ResourceList.schema.json#/definitions/ResourceList"
+          },
+          "type": "array"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the resource. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the resource and that modifies the understanding of the element that contains it and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "identifier": {
+          "description": "Id for specimen.",
+          "items": {
+            "$ref": "Identifier.schema.json#/definitions/Identifier"
+          },
+          "type": "array"
+        },
+        "accessionIdentifier": {
+          "description": "The identifier assigned by the lab when accessioning specimen(s). This is not necessarily the same as the specimen identifier, depending on local lab procedures.",
+          "$ref": "Identifier.schema.json#/definitions/Identifier"
+        },
+        "status": {
+          "description": "The availability of the specimen.",
+          "enum": [
+            "available",
+            "unavailable",
+            "unsatisfactory",
+            "entered-in-error"
+          ]
+        },
+        "_status": {
+          "description": "Extensions for status",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "type": {
+          "description": "The kind of material that forms the specimen.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "subject": {
+          "description": "Where the specimen came from. This may be from patient(s), from a location (e.g., the source of an environmental sample), or a sampling of a substance or a device.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "receivedTime": {
+          "description": "Time when specimen was received for processing or testing.",
+          "$ref": "#/definitions/dateTime"
+        },
+        "_receivedTime": {
+          "description": "Extensions for receivedTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "parent": {
+          "description": "Reference to the parent (source) specimen which is used when the specimen was either derived from or a component of another specimen.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "request": {
+          "description": "Details concerning a service request that required a specimen to be collected.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "collection": {
+          "description": "Details concerning the specimen collection.",
+          "$ref": "#/definitions/Specimen_Collection"
+        },
+        "processing": {
+          "description": "Details concerning processing and processing steps for the specimen.",
+          "items": {
+            "$ref": "#/definitions/Specimen_Processing"
+          },
+          "type": "array"
+        },
+        "container": {
+          "description": "The container holding the specimen.  The recursive nature of containers; i.e. blood in tube in tray in rack is not addressed here.",
+          "items": {
+            "$ref": "#/definitions/Specimen_Container"
+          },
+          "type": "array"
+        },
+        "condition": {
+          "description": "A mode or state of being that describes the nature of the specimen.",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "note": {
+          "description": "To communicate any details or issues about the specimen or during the specimen collection. (for example: broken vial, sent with patient, frozen).",
+          "items": {
+            "$ref": "Annotation.schema.json#/definitions/Annotation"
+          },
+          "type": "array"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "resourceType"
+      ]
+    },
+    "Specimen_Collection": {
+      "description": "A sample to be used for analysis.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "collector": {
+          "description": "Person who collected the specimen.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        },
+        "collectedDateTime": {
+          "description": "Time when specimen was collected from subject - the physiologically relevant time.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_collectedDateTime": {
+          "description": "Extensions for collectedDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "collectedPeriod": {
+          "description": "Time when specimen was collected from subject - the physiologically relevant time.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        },
+        "duration": {
+          "description": "The span of time over which the collection of a specimen occurred.",
+          "$ref": "Duration.schema.json#/definitions/Duration"
+        },
+        "quantity": {
+          "description": "The quantity of specimen collected; for instance the volume of a blood sample, or the physical measurement of an anatomic pathology sample.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "method": {
+          "description": "A coded value specifying the technique that is used to perform the procedure.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "bodySite": {
+          "description": "Anatomical location from which the specimen was collected (if subject is a patient). This is the target site.  This element is not used for environmental specimens.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "fastingStatusCodeableConcept": {
+          "description": "Abstinence or reduction from some or all food, drink, or both, for a period of time prior to sample collection.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "fastingStatusDuration": {
+          "description": "Abstinence or reduction from some or all food, drink, or both, for a period of time prior to sample collection.",
+          "$ref": "Duration.schema.json#/definitions/Duration"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Specimen_Processing": {
+      "description": "A sample to be used for analysis.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Textual description of procedure.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "procedure": {
+          "description": "A coded value specifying the procedure used to process the specimen.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "additive": {
+          "description": "Material used in the processing step.",
+          "items": {
+            "$ref": "Reference.schema.json#/definitions/Reference"
+          },
+          "type": "array"
+        },
+        "timeDateTime": {
+          "description": "A record of the time or period when the specimen processing occurred.  For example the time of sample fixation or the period of time the sample was in formalin.",
+          "pattern": "^([0-9]([0-9]([0-9][1-9]|[1-9]0)|[1-9]00)|[1-9]000)(-(0[1-9]|1[0-2])(-(0[1-9]|[1-2][0-9]|3[0-1])(T([01][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)(\\.[0-9]+)?(Z|(\\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00)))?)?)?$",
+          "type": "string"
+        },
+        "_timeDateTime": {
+          "description": "Extensions for timeDateTime",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "timePeriod": {
+          "description": "A record of the time or period when the specimen processing occurred.  For example the time of sample fixation or the period of time the sample was in formalin.",
+          "$ref": "Period.schema.json#/definitions/Period"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Specimen_Container": {
+      "description": "A sample to be used for analysis.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "identifier": {
+          "description": "Id for container. There may be multiple; a manufacturer\u0027s bar code, lab assigned identifier, etc. The container ID may differ from the specimen id in some circumstances.",
+          "items": {
+            "$ref": "Identifier.schema.json#/definitions/Identifier"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "Textual description of the container.",
+          "$ref": "#/definitions/string"
+        },
+        "_description": {
+          "description": "Extensions for description",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "type": {
+          "description": "The type of container associated with the specimen (e.g. slide, aliquot, etc.).",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "capacity": {
+          "description": "The capacity (volume or other measure) the container may contain.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "specimenQuantity": {
+          "description": "The quantity of specimen in the container; may be volume, dimensions, or other appropriate measurements, depending on the specimen type.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "additiveCodeableConcept": {
+          "description": "Introduced substance to preserve, maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "additiveReference": {
+          "description": "Introduced substance to preserve, maintain or enhance the specimen. Examples: Formalin, Citrate, EDTA.",
+          "$ref": "Reference.schema.json#/definitions/Reference"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

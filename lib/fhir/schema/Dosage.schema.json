@@ -1,0 +1,159 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+  "id": "http://hl7.org/fhir/json-schema/Dosage",
+  "$ref": "#/definitions/Dosage",
+  "description": "see http://hl7.org/fhir/json.html#schema for information about the FHIR Json Schemas",
+  "definitions": {
+    "Dosage": {
+      "description": "Indicates how the medication is/was taken or should be taken by the patient.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "sequence": {
+          "description": "Indicates the order in which the dosage instructions should be applied or interpreted.",
+          "$ref": "#/definitions/integer"
+        },
+        "_sequence": {
+          "description": "Extensions for sequence",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "text": {
+          "description": "Free text dosage instructions e.g. SIG.",
+          "$ref": "#/definitions/string"
+        },
+        "_text": {
+          "description": "Extensions for text",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "additionalInstruction": {
+          "description": "Supplemental instructions to the patient on how to take the medication  (e.g. \"with meals\" or\"take half to one hour before food\") or warnings for the patient about the medication (e.g. \"may cause drowsiness\" or \"avoid exposure of skin to direct sunlight or sunlamps\").",
+          "items": {
+            "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+          },
+          "type": "array"
+        },
+        "patientInstruction": {
+          "description": "Instructions in terms that are understood by the patient or consumer.",
+          "$ref": "#/definitions/string"
+        },
+        "_patientInstruction": {
+          "description": "Extensions for patientInstruction",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "timing": {
+          "description": "When medication should be administered.",
+          "$ref": "Timing.schema.json#/definitions/Timing"
+        },
+        "asNeededBoolean": {
+          "description": "Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).",
+          "pattern": "^true|false$",
+          "type": "boolean"
+        },
+        "_asNeededBoolean": {
+          "description": "Extensions for asNeededBoolean",
+          "$ref": "Element.schema.json#/definitions/Element"
+        },
+        "asNeededCodeableConcept": {
+          "description": "Indicates whether the Medication is only taken when needed within a specific dosing schedule (Boolean option), or it indicates the precondition for taking the Medication (CodeableConcept).",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "site": {
+          "description": "Body site to administer to.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "route": {
+          "description": "How drug should enter body.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "method": {
+          "description": "Technique for administering medication.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "doseAndRate": {
+          "description": "The amount of medication administered.",
+          "items": {
+            "$ref": "#/definitions/Dosage_DoseAndRate"
+          },
+          "type": "array"
+        },
+        "maxDosePerPeriod": {
+          "description": "Upper limit on medication per unit of time.",
+          "$ref": "Ratio.schema.json#/definitions/Ratio"
+        },
+        "maxDosePerAdministration": {
+          "description": "Upper limit on medication per administration.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "maxDosePerLifetime": {
+          "description": "Upper limit on medication per lifetime of the patient.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Dosage_DoseAndRate": {
+      "description": "Indicates how the medication is/was taken or should be taken by the patient.",
+      "properties": {
+        "id": {
+          "description": "Unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces.",
+          "$ref": "string.schema.json#/definitions/string"
+        },
+        "extension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element. To make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension.",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "modifierExtension": {
+          "description": "May be used to represent additional information that is not part of the basic definition of the element and that modifies the understanding of the element in which it is contained and/or the understanding of the containing element\u0027s descendants. Usually modifier elements provide negation or qualification. To make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer can define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions.\n\nModifier extensions SHALL NOT change the meaning of any elements on Resource or DomainResource (including cannot change the meaning of modifierExtension itself).",
+          "items": {
+            "$ref": "Extension.schema.json#/definitions/Extension"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "The kind of dose or rate specified, for example, ordered or calculated.",
+          "$ref": "CodeableConcept.schema.json#/definitions/CodeableConcept"
+        },
+        "doseRange": {
+          "description": "Amount of medication per dose.",
+          "$ref": "Range.schema.json#/definitions/Range"
+        },
+        "doseQuantity": {
+          "description": "Amount of medication per dose.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        },
+        "rateRatio": {
+          "description": "Amount of medication per unit of time.",
+          "$ref": "Ratio.schema.json#/definitions/Ratio"
+        },
+        "rateRange": {
+          "description": "Amount of medication per unit of time.",
+          "$ref": "Range.schema.json#/definitions/Range"
+        },
+        "rateQuantity": {
+          "description": "Amount of medication per unit of time.",
+          "$ref": "Quantity.schema.json#/definitions/Quantity"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
