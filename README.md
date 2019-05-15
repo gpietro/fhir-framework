@@ -1,4 +1,4 @@
-# FHIR generator
+# FHIR generator (PoC)
 
 ## Currently support only STU3
 > Project based on feathers-generator
